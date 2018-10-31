@@ -1,0 +1,11 @@
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.deps.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.runtimeconfig.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.runtimeconfig.dev.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.csprojAssemblyReference.cache
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.csproj.CoreCompileInputs.cache
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.AssemblyInfoInputs.cache
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.AssemblyInfo.cs
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.pdb
