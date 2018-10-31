@@ -36,7 +36,7 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     private void OnApplicationQuit()
     {
         if (_netClient != null && _netClient.IsRunning)
-            _netClient.Start();
+            _netClient.Stop();
     }
 
     public void OnNetworkLatencyUpdate(NetPeer peer, int latency) {  }
@@ -51,6 +51,14 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
             return;
 
         Debug.Log($"OnNetworkReceive: {reader.Data.Length}");
+
+        int operation = reader.GetInt();
+
+        if (operation == 10)
+        {
+            PlayerController newPlayer = Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity) as PlayerController;
+            newPlayer.isMine = reader.GetBool();
+        }
     }
     
     public void OnPeerConnected(NetPeer peer)

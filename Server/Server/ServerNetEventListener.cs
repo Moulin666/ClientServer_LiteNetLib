@@ -30,6 +30,14 @@ namespace Server
                 _netServer.PollEvents();
                 Thread.Sleep(15);
             }
+        }
+
+        public void Stop()
+        {
+            foreach (var peer in _peers)
+                _netServer.DisconnectPeer(peer.Value);
+
+            Console.WriteLine(string.Format("Server stopping. Disconnected {0} peers.", _peers.Count));
 
             _netServer.Stop();
         }
@@ -50,6 +58,23 @@ namespace Server
 
         public void OnPeerConnected(NetPeer peer)
         {
+            foreach(var p in _peers)
+            {
+                _dataWriter.Reset();
+
+                _dataWriter.Put(10);
+                _dataWriter.Put(false);
+
+                p.Value.Send(_dataWriter, SendOptions.Sequenced);
+            }
+
+            _dataWriter.Reset();
+
+            _dataWriter.Put(10);
+            _dataWriter.Put(true);
+
+            peer.Send(_dataWriter, SendOptions.Sequenced);
+
             _peers.Add(peer.ConnectId, peer);
 
             Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.ConnectId));
