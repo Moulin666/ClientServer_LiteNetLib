@@ -56,7 +56,8 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
         if (operation == 10)
         {
-            PlayerController newPlayer = Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity) as PlayerController;
+            PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
+                .GetComponent<PlayerController>();
             newPlayer.isMine = reader.GetBool();
         }
     }
