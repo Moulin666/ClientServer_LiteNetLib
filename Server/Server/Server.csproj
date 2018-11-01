@@ -9,4 +9,8 @@
     <PackageReference Include="LiteNetLib" Version="0.7.7.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NetCommon\NetCommon.csproj" />
+  </ItemGroup>
+
 </Project>

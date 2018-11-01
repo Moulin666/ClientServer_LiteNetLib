@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using System.Collections.Generic;
+using Server;
+using Server.Codes;
 
 
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
@@ -8,6 +11,8 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     private NetDataWriter _dataWriter;
     private NetManager _netClient;
     private NetPeer _serverPeer;
+
+    private Dictionary<long, NetPlayer> _peers;
 
     private void Start()
     {
@@ -52,13 +57,43 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
         Debug.Log($"OnNetworkReceive: {reader.Data.Length}");
 
-        int operation = reader.GetInt();
+        byte operation = reader.GetByte();
 
-        if (operation == 10)
+        switch(operation)
         {
-            PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
-                .GetComponent<PlayerController>();
-            newPlayer.isMine = reader.GetBool();
+            case (byte)NetOperationCode.SpawnPlayerCode:
+                {
+                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
+                        .GetComponent<PlayerController>();
+                    newPlayer.isMine = false;
+
+                    Debug.LogFormat("Spawn new player. PlayerId: {0}", reader.GetLong());
+                }
+                break;
+
+            case (byte)NetOperationCode.SpawnPlayersCode:
+                {
+                    Debug.LogFormat("Spawn players operation. PlayerCount: {0}", reader.GetInt());
+                }
+                break;
+
+            case (byte)NetOperationCode.WorldEnter:
+                {
+                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
+                        .GetComponent<PlayerController>();
+                    newPlayer.isMine = true;
+                }
+                break;
+
+            case (byte)NetOperationCode.MovePlayerCode:
+                {
+                    Debug.Log("Player move");
+                }
+                break;
+
+            default:
+                Debug.Log("Default handler");
+                break;
         }
     }
     

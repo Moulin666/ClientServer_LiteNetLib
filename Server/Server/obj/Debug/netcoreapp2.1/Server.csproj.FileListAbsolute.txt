@@ -9,3 +9,6 @@ C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcorea
 C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\Server.pdb
 C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.dll
 C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\NetCommon.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\bin\Debug\netcoreapp2.1\NetCommon.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\Server\obj\Debug\netcoreapp2.1\Server.csproj.CopyComplete
