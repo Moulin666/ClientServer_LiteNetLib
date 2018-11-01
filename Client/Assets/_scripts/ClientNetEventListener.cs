@@ -2,8 +2,8 @@
 using LiteNetLib;
 using LiteNetLib.Utils;
 using System.Collections.Generic;
-using Server;
-using Server.Codes;
+using NetCommon;
+using NetCommon.Codes;
 
 
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
@@ -12,7 +12,7 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     private NetManager _netClient;
     private NetPeer _serverPeer;
 
-    private Dictionary<long, NetPlayer> _peers;
+    private readonly Dictionary<long, NetPeer> _peers;
 
     private void Start()
     {
@@ -57,35 +57,29 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
         Debug.Log($"OnNetworkReceive: {reader.Data.Length}");
 
-        byte operation = reader.GetByte();
+        NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
-        switch(operation)
+        switch(operationCode)
         {
-            case (byte)NetOperationCode.SpawnPlayerCode:
+            case NetOperationCode.SpawnPlayerCode:
                 {
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
-                        .GetComponent<PlayerController>();
-                    newPlayer.isMine = false;
-
-                    Debug.LogFormat("Spawn new player. PlayerId: {0}", reader.GetLong());
+                    Debug.LogFormat("SpawnPlayer");
                 }
                 break;
 
-            case (byte)NetOperationCode.SpawnPlayersCode:
+            case NetOperationCode.SpawnPlayersCode:
                 {
-                    Debug.LogFormat("Spawn players operation. PlayerCount: {0}", reader.GetInt());
+                    Debug.Log("SpawnPlayers");
                 }
                 break;
 
-            case (byte)NetOperationCode.WorldEnter:
+            case NetOperationCode.WorldEnter:
                 {
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
-                        .GetComponent<PlayerController>();
-                    newPlayer.isMine = true;
+                    Debug.Log("WorldEnter");
                 }
                 break;
 
-            case (byte)NetOperationCode.MovePlayerCode:
+            case NetOperationCode.MovePlayerCode:
                 {
                     Debug.Log("Player move");
                 }

@@ -1,9 +1,10 @@
 ﻿using LiteNetLib;
 using LiteNetLib.Utils;
-using Server.Codes;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using NetCommon;
+using NetCommon.Codes;
 
 
 namespace Server
@@ -56,31 +57,44 @@ namespace Server
 
         public void OnPeerConnected(NetPeer peer)
         {
-            foreach(var p in _peers)
-            {
-                _dataWriter.Reset();
-                _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
-                _dataWriter.Put(peer.ConnectId);
+            NetPlayer newPeer = new NetPlayer(peer);
 
+            var serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData(peer.ConnectId));
+
+            _dataWriter.Reset();
+            _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
+            _dataWriter.Put(serializeNewPeer);
+
+            foreach (var p in _peers)
                 p.Value.NetPeer.Send(_dataWriter, SendOptions.Sequenced);
-            }
 
             if (_peers.Count > 0)
             {
                 _dataWriter.Reset();
                 _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
-                _dataWriter.Put(_peers.Count);
+                _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.CountOfPlayer, _peers.Count)));
 
-                peer.Send(_dataWriter, SendOptions.Sequenced);
+                string[] playerArray = new string[_peers.Count];
+
+                int i = 0;
+                foreach (var p in _peers)
+                {
+                    playerArray[i] = MessageSerializerService.SerializeObjectOfType(p.Value);
+                    i++;
+                }
+
+                _dataWriter.PutArray(playerArray);
+
+                peer.Send(_dataWriter, SendOptions.ReliableOrdered);
             }
-
+            
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.WorldEnter);
-            _dataWriter.Put(peer.ConnectId);
+            _dataWriter.Put(serializeNewPeer);
 
             peer.Send(_dataWriter, SendOptions.Sequenced);
 
-            _peers.Add(peer.ConnectId, new NetPlayer(peer));
+            _peers.Add(peer.ConnectId, newPeer);
 
             Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.ConnectId));
         }
