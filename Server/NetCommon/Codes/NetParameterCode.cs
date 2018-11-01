@@ -4,6 +4,8 @@
     {
         NetPlayer,
 
-        CountOfPlayer
+        CountOfPlayer,
+
+        PlayerId
     }
 }

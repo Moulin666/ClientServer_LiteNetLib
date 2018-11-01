@@ -66,7 +66,7 @@ namespace Server
             _dataWriter.Put(serializeNewPeer);
 
             foreach (var p in _peers)
-                p.Value.NetPeer.Send(_dataWriter, SendOptions.Sequenced);
+                p.Value.NetPeer.Send(_dataWriter, SendOptions.ReliableOrdered);
 
             if (_peers.Count > 0)
             {
@@ -87,7 +87,9 @@ namespace Server
 
                 peer.Send(_dataWriter, SendOptions.ReliableOrdered);
             }
-            
+
+            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData(peer.ConnectId, true));
+
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.WorldEnter);
             _dataWriter.Put(serializeNewPeer);
@@ -108,6 +110,13 @@ namespace Server
                 _peers.Remove(peer.ConnectId);
                 Console.WriteLine(string.Format("(Peer{0}): Disconnected", peer.ConnectId));
             }
+
+            _dataWriter.Reset();
+            _dataWriter.Put((byte)NetOperationCode.DestroyPlayer);
+            _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.PlayerId, peer.ConnectId)));
+
+            foreach (var p in _peers)
+                p.Value.NetPeer.Send(_dataWriter, SendOptions.ReliableOrdered);
         }
 
         public void OnNetworkReceive(NetPeer peer, NetDataReader reader)

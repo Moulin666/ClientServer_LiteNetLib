@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using NetCommon;
+using UnityEngine;
 using UnityEngine.AI;
 
 
 public class PlayerController : MonoBehaviour
 {
-    public bool isMine = false;
+    public PlayerData playerData;
 
     private NavMeshAgent _agent;
 
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isMine)
+        if (playerData.IsMine)
         {
             if (Input.GetMouseButtonDown(0))
             {
