@@ -11,9 +11,9 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     private NetManager _netClient;
     private NetPeer _serverPeer;
 
-    private readonly Dictionary<long, NetPeer> _peers;
+    private readonly Dictionary<long, NetPeer> _peers = new Dictionary<long, NetPeer>();
 
-    private readonly Dictionary<long, GameObject> _netObjects;
+    private readonly Dictionary<long, GameObject> _netObjects = new Dictionary<long, GameObject>();
 
     private void Start()
     {
@@ -79,15 +79,24 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
             case NetOperationCode.SpawnPlayersCode:
                 {
-                    ParameterObject parameter = MessageSerializerService.DeserializeObjectOfType<ParameterObject>(reader.GetString());
-                    int countOfPlayer = (int)parameter.Parameter;
+                    int playerCount = reader.GetInt();
+                    string[] playerArray = reader.GetStringArray();
 
-                    for (int i = 0; i < countOfPlayer; i++)
+                    Debug.Log(playerArray[0]);
+
+                    foreach(var p in playerArray)
                     {
-                        Debug.Log(countOfPlayer);
+                        PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(p);
+
+                        PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), new Vector3(playerData.X, playerData.Y, playerData.Z), Quaternion.identity))
+                            .GetComponent<PlayerController>();
+
+                        newPlayer.playerData = playerData;
+
+                        _netObjects.Add(playerData.Id, newPlayer.gameObject);
                     }
 
-                    Debug.Log("SpawnPlayers");
+                    Debug.LogFormat("SpawnPlayers. Count: {0}", playerCount);
                 }
                 break;
 

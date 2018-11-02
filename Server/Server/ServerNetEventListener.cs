@@ -59,7 +59,7 @@ namespace Server
         {
             NetPlayer newPeer = new NetPlayer(peer);
 
-            var serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData(peer.ConnectId));
+            var serializeNewPeer = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
 
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
@@ -72,14 +72,14 @@ namespace Server
             {
                 _dataWriter.Reset();
                 _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
-                _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.CountOfPlayer, _peers.Count)));
+                _dataWriter.Put(_peers.Count);
 
                 string[] playerArray = new string[_peers.Count];
 
                 int i = 0;
                 foreach (var p in _peers)
                 {
-                    playerArray[i] = MessageSerializerService.SerializeObjectOfType(p.Value);
+                    playerArray[i] = MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData);
                     i++;
                 }
 
@@ -88,7 +88,10 @@ namespace Server
                 peer.Send(_dataWriter, SendOptions.ReliableOrdered);
             }
 
-            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData(peer.ConnectId, true));
+            PlayerData peerPlayerData = newPeer.PlayerData;
+            peerPlayerData.IsMine = true;
+
+            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(peerPlayerData);
 
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.WorldEnter);

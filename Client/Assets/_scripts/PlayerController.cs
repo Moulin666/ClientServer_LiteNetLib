@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
     public PlayerData playerData;
 
     private NavMeshAgent _agent;

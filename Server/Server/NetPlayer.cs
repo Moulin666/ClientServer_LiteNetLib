@@ -1,5 +1,5 @@
 ﻿using LiteNetLib;
-using System;
+using NetCommon;
 
 
 namespace Server
@@ -8,32 +8,27 @@ namespace Server
     {
         public NetPeer NetPeer { get; set; }
 
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-
-        public Boolean Moved;
+        public PlayerData PlayerData { get; set; }
 
         public NetPlayer(NetPeer peer)
         {
             NetPeer = peer;
 
-            X = 0f;
-            Y = 5f;
-            Z = 0f;
-
-            Moved = false;
+            PlayerData = new PlayerData
+            {
+                Id = peer.ConnectId,
+                X = 0,
+                Y = 5,
+                Z = 0,
+                IsMine = false,
+                Moved = false
+            };
         }
 
-        public NetPlayer(NetPeer peer, Boolean isMine)
+        public NetPlayer(NetPeer peer, PlayerData playerData)
         {
             NetPeer = peer;
-
-            X = 0f;
-            Y = 5f;
-            Z = 0f;
-
-            Moved = false;
+            PlayerData = playerData;
         }
     }
 }
