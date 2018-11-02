@@ -5,8 +5,35 @@ using System.Collections.Generic;
 using NetCommon.Codes;
 using NetCommon;
 
+
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
+    #region Public variables
+
+    /// <summary>
+    /// Server Address.
+    /// </summary>
+    public string ServerAddress = "localhost";
+
+    /// <summary>
+    /// Server port.
+    /// </summary>
+    public int ServerPort = 15000;
+
+    /// <summary>
+    /// Connection key for connect.
+    /// </summary>
+    public string ConnectionKey = "TestServer";
+
+    /// <summary>
+	/// ClientNetEventListener singleton class.
+	/// </summary>
+	public static ClientNetEventListener Instance = null;
+
+    #endregion
+
+    #region Private variables
+
     private NetDataWriter _dataWriter;
     private NetManager _netClient;
     private NetPeer _serverPeer;
@@ -15,16 +42,30 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     private readonly Dictionary<long, GameObject> _netObjects = new Dictionary<long, GameObject>();
 
+    #endregion
+
+    #region Unity methods
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         Debug.developerConsoleVisible = true;
 
         _dataWriter = new NetDataWriter();
-        _netClient = new NetManager(this, "TestServer");
+        _netClient = new NetManager(this, ConnectionKey);
 
         if (_netClient.Start())
         {
-            _netClient.Connect("localhost", 15000);
+            _netClient.Connect(ServerAddress, ServerPort);
             Debug.Log("Client net manager started!");
         }
         else
@@ -46,6 +87,10 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
         if (_netClient != null && _netClient.IsRunning)
             _netClient.Stop();
     }
+
+    #endregion
+
+    #region Implements of INetEventListener
 
     public void OnNetworkLatencyUpdate(NetPeer peer, int latency) {  }
 
@@ -80,12 +125,13 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
             case NetOperationCode.SpawnPlayersCode:
                 {
                     int playerCount = reader.GetInt();
-                    string[] playerArray = reader.GetStringArray();
 
-                    Debug.Log(playerArray[0]);
-
-                    foreach(var p in playerArray)
+                    for (int i = 0; i < playerCount; i++)
                     {
+                        var p = reader.GetString();
+
+                        Debug.Log(p);
+
                         PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(p);
 
                         PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), new Vector3(playerData.X, playerData.Y, playerData.Z), Quaternion.identity))
@@ -115,7 +161,17 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
             case NetOperationCode.MovePlayerCode:
                 {
-                    Debug.Log("Player move");
+                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+
+                    if (_netObjects.ContainsKey(playerData.Id))
+                    {
+                        Vector3 newPosition = new Vector3(playerData.X, playerData.Y, playerData.Z);
+
+                        PlayerController netObject = _netObjects[playerData.Id].GetComponent<PlayerController>();
+                        netObject.MoveToPosition(newPosition);
+
+                        Debug.LogFormat("Player move. Id: {0} | New pos: {1}", playerData.Id, newPosition);
+                    }
                 }
                 break;
 
@@ -151,5 +207,12 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     {
         Debug.Log(string.Format("Disconnected. DisconnectReason: {0} | ErrorCode: {1}",
             disconnectInfo.Reason, disconnectInfo.SocketErrorCode));
+    }
+
+    #endregion
+
+    public void SendOperation(NetDataWriter dataWriter, SendOptions sendOptions)
+    {
+        _serverPeer.Send(dataWriter, sendOptions);
     }
 }

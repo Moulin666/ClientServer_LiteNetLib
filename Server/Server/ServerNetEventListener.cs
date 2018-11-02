@@ -50,10 +50,7 @@ namespace Server
 
         public void OnNetworkReceiveUnconnected(NetEndPoint remoteEndPoint, NetDataReader reader, UnconnectedMessageType messageType) { }
 
-        public void OnNetworkError(NetEndPoint endPoint, int socketErrorCode)
-        {
-            Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint, socketErrorCode));
-        }
+        public void OnNetworkError(NetEndPoint endPoint, int socketErrorCode) => Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint, socketErrorCode));
 
         public void OnPeerConnected(NetPeer peer)
         {
@@ -74,24 +71,20 @@ namespace Server
                 _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
                 _dataWriter.Put(_peers.Count);
 
-                string[] playerArray = new string[_peers.Count];
-
-                int i = 0;
                 foreach (var p in _peers)
-                {
-                    playerArray[i] = MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData);
-                    i++;
-                }
-
-                _dataWriter.PutArray(playerArray);
+                    _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData));
 
                 peer.Send(_dataWriter, SendOptions.ReliableOrdered);
             }
 
-            PlayerData peerPlayerData = newPeer.PlayerData;
-            peerPlayerData.IsMine = true;
-
-            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(peerPlayerData);
+            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData
+            {
+                Id = newPeer.PlayerData.Id,
+                X = newPeer.PlayerData.X,
+                Y = newPeer.PlayerData.Y,
+                Z = newPeer.PlayerData.Z,
+                IsMine = true
+            });
 
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.WorldEnter);
@@ -124,7 +117,48 @@ namespace Server
 
         public void OnNetworkReceive(NetPeer peer, NetDataReader reader)
         {
-            Console.WriteLine(string.Format("NetworkReceive. EndPoint: {0} | Reader: {1}", peer.EndPoint, reader.GetString()));
+            if (reader.Data == null)
+                return;
+
+            Console.WriteLine($"OnNetworkReceive: {reader.Data.Length}");
+
+            NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
+
+            switch (operationCode)
+            {
+                case NetOperationCode.MovePlayerCode:
+                    {
+                        PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+
+                        if (_peers.ContainsKey(playerData.Id))
+                        {
+                            var player = _peers[playerData.Id];
+                            player.PlayerData.X = playerData.X;
+                            player.PlayerData.Y = playerData.Y;
+                            player.PlayerData.Z = playerData.Z;
+
+                            _peers[playerData.Id] = player;
+
+                            var serializePeer = MessageSerializerService.SerializeObjectOfType(player.PlayerData);
+
+                            _dataWriter.Reset();
+                            _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+                            _dataWriter.Put(serializePeer);
+
+                            foreach (var p in _peers)
+                                if (p.Value.NetPeer.ConnectId != peer.ConnectId)
+                                    p.Value.NetPeer.Send(_dataWriter, SendOptions.Sequenced);
+
+                            Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
+                                player.PlayerData.Id, player.PlayerData.X, player.PlayerData.Y, player.PlayerData.Z));
+                        }
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Default handler");
+                    break;
+            }
         }
 
         #endregion

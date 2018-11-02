@@ -21,7 +21,6 @@ namespace Server
                 Y = 5,
                 Z = 0,
                 IsMine = false,
-                Moved = false
             };
         }
 
