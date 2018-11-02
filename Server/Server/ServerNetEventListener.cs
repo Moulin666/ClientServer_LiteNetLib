@@ -3,6 +3,8 @@ using LiteNetLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using NetCommon;
+using NetCommon.Codes;
 
 
 namespace Server
@@ -12,7 +14,7 @@ namespace Server
         private NetManager _netServer;
         private NetDataWriter _dataWriter;
 
-        private Dictionary<long, NetPeer> _peers;
+        private Dictionary<long, NetPlayer> _peers;
 
         public ServerNetEventListener()
         {
@@ -21,7 +23,7 @@ namespace Server
             _netServer.Start(15000);
             _netServer.UpdateTime = 15;
 
-            _peers = new Dictionary<long, NetPeer>();
+            _peers = new Dictionary<long, NetPlayer>();
 
             Console.WriteLine("Server setup.");
 
@@ -30,27 +32,67 @@ namespace Server
                 _netServer.PollEvents();
                 Thread.Sleep(15);
             }
+        }
+
+        public void Stop()
+        {
+            foreach (var peer in _peers)
+                _netServer.DisconnectPeer(peer.Value.NetPeer);
+
+            Console.WriteLine(string.Format("Server stopping. Disconnected {0} peers.", _peers.Count));
 
             _netServer.Stop();
         }
 
-        public void OnNetworkError(NetEndPoint endPoint, int socketErrorCode)
-        {
-            Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint, socketErrorCode));
-        }
+        #region Implements of INetEventListener
 
         public void OnNetworkLatencyUpdate(NetPeer peer, int latency) { }
 
-        public void OnNetworkReceive(NetPeer peer, NetDataReader reader)
-        {
-            Console.WriteLine(string.Format("NetworkReceive. EndPoint: {0} | Reader: {1}", peer.EndPoint, reader.GetString()));
-        }
+        public void OnNetworkReceiveUnconnected(NetEndPoint remoteEndPoint, NetDataReader reader, UnconnectedMessageType messageType) { }
 
-        public void OnNetworkReceiveUnconnected(NetEndPoint remoteEndPoint, NetDataReader reader, UnconnectedMessageType messageType) {  }
+        public void OnNetworkError(NetEndPoint endPoint, int socketErrorCode) => Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint, socketErrorCode));
 
         public void OnPeerConnected(NetPeer peer)
         {
-            _peers.Add(peer.ConnectId, peer);
+            NetPlayer newPeer = new NetPlayer(peer);
+
+            var serializeNewPeer = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
+
+            _dataWriter.Reset();
+            _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
+            _dataWriter.Put(serializeNewPeer);
+
+            foreach (var p in _peers)
+                p.Value.NetPeer.Send(_dataWriter, SendOptions.ReliableOrdered);
+
+            if (_peers.Count > 0)
+            {
+                _dataWriter.Reset();
+                _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
+                _dataWriter.Put(_peers.Count);
+
+                foreach (var p in _peers)
+                    _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData));
+
+                peer.Send(_dataWriter, SendOptions.ReliableOrdered);
+            }
+
+            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData
+            {
+                Id = newPeer.PlayerData.Id,
+                X = newPeer.PlayerData.X,
+                Y = newPeer.PlayerData.Y,
+                Z = newPeer.PlayerData.Z,
+                IsMine = true
+            });
+
+            _dataWriter.Reset();
+            _dataWriter.Put((byte)NetOperationCode.WorldEnter);
+            _dataWriter.Put(serializeNewPeer);
+
+            peer.Send(_dataWriter, SendOptions.Sequenced);
+
+            _peers.Add(peer.ConnectId, newPeer);
 
             Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.ConnectId));
         }
@@ -64,6 +106,61 @@ namespace Server
                 _peers.Remove(peer.ConnectId);
                 Console.WriteLine(string.Format("(Peer{0}): Disconnected", peer.ConnectId));
             }
+
+            _dataWriter.Reset();
+            _dataWriter.Put((byte)NetOperationCode.DestroyPlayer);
+            _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.PlayerId, peer.ConnectId)));
+
+            foreach (var p in _peers)
+                p.Value.NetPeer.Send(_dataWriter, SendOptions.ReliableOrdered);
         }
+
+        public void OnNetworkReceive(NetPeer peer, NetDataReader reader)
+        {
+            if (reader.Data == null)
+                return;
+
+            Console.WriteLine($"OnNetworkReceive: {reader.Data.Length}");
+
+            NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
+
+            switch (operationCode)
+            {
+                case NetOperationCode.MovePlayerCode:
+                    {
+                        PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+
+                        if (_peers.ContainsKey(playerData.Id))
+                        {
+                            var player = _peers[playerData.Id];
+                            player.PlayerData.X = playerData.X;
+                            player.PlayerData.Y = playerData.Y;
+                            player.PlayerData.Z = playerData.Z;
+
+                            _peers[playerData.Id] = player;
+
+                            var serializePeer = MessageSerializerService.SerializeObjectOfType(player.PlayerData);
+
+                            _dataWriter.Reset();
+                            _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+                            _dataWriter.Put(serializePeer);
+
+                            foreach (var p in _peers)
+                                if (p.Value.NetPeer.ConnectId != peer.ConnectId)
+                                    p.Value.NetPeer.Send(_dataWriter, SendOptions.Sequenced);
+
+                            Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
+                                player.PlayerData.Id, player.PlayerData.X, player.PlayerData.Y, player.PlayerData.Z));
+                        }
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Default handler");
+                    break;
+            }
+        }
+
+        #endregion
     }
 }

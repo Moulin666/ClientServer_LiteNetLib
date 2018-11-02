@@ -1,0 +1,14 @@
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\bin\Debug\netstandard2.0\NetCommon.deps.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\bin\Debug\netstandard2.0\NetCommon.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\bin\Debug\netstandard2.0\NetCommon.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\obj\Debug\netstandard2.0\NetCommon.csproj.CoreCompileInputs.cache
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\obj\Debug\netstandard2.0\NetCommon.AssemblyInfoInputs.cache
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\obj\Debug\netstandard2.0\NetCommon.AssemblyInfo.cs
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\obj\Debug\netstandard2.0\NetCommon.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Server\NetCommon\obj\Debug\netstandard2.0\NetCommon.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\netstandard2.0\NetCommon.deps.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\netstandard2.0\NetCommon.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\netstandard2.0\NetCommon.pdb
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\NetCommon\netstandard2.0\NetCommon.deps.json
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\NetCommon\netstandard2.0\NetCommon.dll
+C:\Users\WS-07\Desktop\projects\LiteNetLibTests\Client\Assets\Plugins\NetCommon\netstandard2.0\NetCommon.pdb
