@@ -10,6 +10,9 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
     #region Public variables
 
+    public delegate void MoveContainer(bool isMine, Vector3 newPosition);
+    public event MoveContainer OnMove;
+
     /// <summary>
     /// Server Address.
     /// </summary>
@@ -33,14 +36,11 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     #endregion
 
     #region Private variables
-
-    private NetDataWriter _dataWriter;
-    private NetManager _netClient;
+    
+    private NetManager _netManager;
     private NetPeer _serverPeer;
 
-    private readonly Dictionary<long, NetPeer> _peers = new Dictionary<long, NetPeer>();
-
-    private readonly Dictionary<long, GameObject> _netObjects = new Dictionary<long, GameObject>();
+    private readonly Dictionary<long, NetObject> _netObjects = new Dictionary<long, NetObject>();
 
     #endregion
 
@@ -58,34 +58,31 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     private void Start()
     {
-        Debug.developerConsoleVisible = true;
+        _netManager = new NetManager(this, ConnectionKey);
 
-        _dataWriter = new NetDataWriter();
-        _netClient = new NetManager(this, ConnectionKey);
-
-        if (_netClient.Start())
+        if (_netManager.Start())
         {
-            _netClient.Connect(ServerAddress, ServerPort);
+            _netManager.Connect(ServerAddress, ServerPort);
             Debug.Log("Client net manager started!");
         }
         else
             Debug.LogError("Could not start client net manager!");
 
-        _netClient.UpdateTime = 15;
+        _netManager.UpdateTime = 15;
     }
 
     private void FixedUpdate()
     {
-        if (_netClient != null && _netClient.IsRunning)
+        if (_netManager != null && _netManager.IsRunning)
         {
-            _netClient.PollEvents();
+            _netManager.PollEvents();
         }
     }
 
     private void OnApplicationQuit()
     {
-        if (_netClient != null && _netClient.IsRunning)
-            _netClient.Stop();
+        if (_netManager != null && _netManager.IsRunning)
+            _netManager.Stop();
     }
 
     #endregion
@@ -111,14 +108,18 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
         {
             case NetOperationCode.SpawnPlayerCode:
                 {
+                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+
                     PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
                         .GetComponent<PlayerController>();
 
-                    newPlayer.playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+                    NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
+                    netObject.Id = playerData.Id;
+                    netObject.IsMine = playerData.IsMine;
 
-                    _netObjects.Add(newPlayer.playerData.Id, newPlayer.gameObject);
+                    _netObjects.Add(playerData.Id, netObject);
 
-                    Debug.LogFormat("SpawnPlayer. PlayerId: {0}", newPlayer.playerData.Id);
+                    Debug.LogFormat("SpawnPlayer. PlayerId: {0}", playerData.Id);
                 }
                 break;
 
@@ -137,9 +138,11 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
                         PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), new Vector3(playerData.X, playerData.Y, playerData.Z), Quaternion.identity))
                             .GetComponent<PlayerController>();
 
-                        newPlayer.playerData = playerData;
+                        NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
+                        netObject.Id = playerData.Id;
+                        netObject.IsMine = playerData.IsMine;
 
-                        _netObjects.Add(playerData.Id, newPlayer.gameObject);
+                        _netObjects.Add(playerData.Id, netObject);
                     }
 
                     Debug.LogFormat("SpawnPlayers. Count: {0}", playerCount);
@@ -148,14 +151,18 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
             case NetOperationCode.WorldEnter:
                 {
+                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+
                     PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
                         .GetComponent<PlayerController>();
 
-                    newPlayer.playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+                    NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
+                    netObject.Id = playerData.Id;
+                    netObject.IsMine = playerData.IsMine;
 
-                    _netObjects.Add(newPlayer.playerData.Id, newPlayer.gameObject);
+                    _netObjects.Add(playerData.Id, netObject);
 
-                    Debug.LogFormat("WorldEnter. PlayerId: {0}", newPlayer.playerData.Id);
+                    Debug.LogFormat("WorldEnter. PlayerId: {0}", playerData.Id);
                 }
                 break;
 
@@ -163,12 +170,11 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
                 {
                     PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
 
-                    if (_netObjects.ContainsKey(playerData.Id))
+                    if (OnMove != null)
                     {
                         Vector3 newPosition = new Vector3(playerData.X, playerData.Y, playerData.Z);
 
-                        PlayerController netObject = _netObjects[playerData.Id].GetComponent<PlayerController>();
-                        netObject.MoveToPosition(newPosition);
+                        OnMove(playerData.IsMine, newPosition);
 
                         Debug.LogFormat("Player move. Id: {0} | New pos: {1}", playerData.Id, newPosition);
                     }
