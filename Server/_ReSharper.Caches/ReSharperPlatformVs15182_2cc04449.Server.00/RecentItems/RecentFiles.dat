@@ -1,0 +1,48 @@
+﻿<RecentFiles>
+  <RecentFiles>
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:PlayerController.cs" caret="2213" fromTop="26" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:NetObject.cs" caret="288" fromTop="15" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:ScriptableObject/f:NetMessage.cs" caret="364" fromTop="15" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Message/f:NetMessageHandler.cs" caret="0" fromTop="0" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:NetPlayer.cs" caret="212" fromTop="8" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="4853" fromTop="41" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3435" fromTop="31" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="96" fromTop="4" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="674" fromTop="16" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="490" fromTop="11" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="410" fromTop="11" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="497" fromTop="15" />
+  </RecentFiles>
+  <RecentEdits>
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3808" fromTop="19" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3808" fromTop="9" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3808" fromTop="22" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="684" fromTop="17" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="684" fromTop="16" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="123" fromTop="6" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3808" fromTop="16" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="801" fromTop="23" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="93" fromTop="6" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="41" fromTop="1" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="124" fromTop="6" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="125" fromTop="6" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="1269" fromTop="30" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3812" fromTop="29" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="4145" fromTop="33" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="4491" fromTop="41" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2964" fromTop="24" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3129" fromTop="28" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="121" fromTop="3" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3219" fromTop="23" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="350" fromTop="10" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="1259" fromTop="28" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="350" fromTop="10" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="756" fromTop="17" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="801" fromTop="20" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="320" fromTop="9" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="351" fromTop="10" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="1227" fromTop="27" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="352" fromTop="10" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="1470" fromTop="36" />
+  </RecentEdits>
+</RecentFiles>

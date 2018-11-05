@@ -17,7 +17,7 @@ public class NetObject : MonoBehaviour
 
     private Vector3 serverPosition;
 
-    private void Start()
+    private void Start ()
     {
         if (IsMine && !IsStatic)
             StartCoroutine("SendMyPosition");
@@ -25,7 +25,7 @@ public class NetObject : MonoBehaviour
             ClientNetEventListener.Instance.OnMove += MoveToPosition;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate ()
     {
         if (!IsMine && !IsStatic)
         {
@@ -36,13 +36,13 @@ public class NetObject : MonoBehaviour
         }
     }
 
-    public void MoveToPosition(long id, Vector3 newPosition)
+    public void MoveToPosition (long id, Vector3 newPosition)
     {
         if (Id == id)
             serverPosition = newPosition;
     }
 
-    private IEnumerator SendMyPosition()
+    private IEnumerator SendMyPosition ()
     {
         yield return new WaitForSeconds(0.1f);
 

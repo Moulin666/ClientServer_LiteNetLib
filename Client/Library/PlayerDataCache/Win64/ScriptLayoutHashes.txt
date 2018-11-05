@@ -166,3 +166,9 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
+a4a5eed8c888f835268128bc092427bf Assembly-CSharp.dll:.NetMessage
+f13085146d191eca75c95043e1824b92 Assembly-CSharp.dll:.WorldEnterHandler
+f13085146d191eca75c95043e1824b92 Assembly-CSharp.dll:.SpawnPlayerHandler
+f13085146d191eca75c95043e1824b92 Assembly-CSharp.dll:.SpawnPlayersHandler
+f13085146d191eca75c95043e1824b92 Assembly-CSharp.dll:.DestroyPlayerHandler
+f13085146d191eca75c95043e1824b92 Assembly-CSharp.dll:.MovePlayerHandler

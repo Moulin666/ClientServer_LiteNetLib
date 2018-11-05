@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<Renderer>().material.color = Color.cyan;
     }
 
-    private void Update()
+    private void Update ()
     {
         if (_netObject.IsMine)
         {
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void InputUpdate()
+    private void InputUpdate ()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

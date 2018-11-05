@@ -61,8 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_scripts\ClientNetEventListener.cs" />
+    <Compile Include="Assets\_scripts\Message\NetMessageHandler.cs" />
+    <Compile Include="Assets\_scripts\NetMessageHandlers\DestroyPlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\NetMessageHandlers\MovePlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\NetMessageHandlers\SpawnPlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\NetMessageHandlers\SpawnPlayersHandler.cs" />
+    <Compile Include="Assets\_scripts\NetMessageHandlers\WorldEnterHandler.cs" />
     <Compile Include="Assets\_scripts\NetObject.cs" />
     <Compile Include="Assets\_scripts\PlayerController.cs" />
+    <Compile Include="Assets\_scripts\ScriptableObject\NetMessage.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/WS-07/Desktop/projects/LiteNetLibTests/Client/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

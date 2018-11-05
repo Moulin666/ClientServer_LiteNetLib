@@ -3,9 +3,7 @@ using LiteNetLib;
 using LiteNetLib.Utils;
 using System.Collections.Generic;
 using NetCommon.Codes;
-using NetCommon;
-using NetCommon.MessageObjects;
-
+using System.Linq;
 
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
@@ -34,14 +32,20 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 	/// </summary>
 	public static ClientNetEventListener Instance = null;
 
+    public Dictionary<long, NetObject> NetObjects = new Dictionary<long, NetObject>();
+
     #endregion
 
     #region Private variables
-    
+
     private NetManager _netManager;
     private NetPeer _serverPeer;
+   
 
-    private readonly Dictionary<long, NetObject> _netObjects = new Dictionary<long, NetObject>();
+    /// <summary>
+    /// List event net messages.
+    /// </summary>
+    protected List<NetMessage> EventMessageList = new List<NetMessage>();
 
     #endregion
 
@@ -55,6 +59,8 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        GatherMessageHandlers();
     }
 
     private void Start()
@@ -75,9 +81,7 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     private void FixedUpdate()
     {
         if (_netManager != null && _netManager.IsRunning)
-        {
             _netManager.PollEvents();
-        }
     }
 
     private void OnApplicationQuit()
@@ -105,118 +109,15 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
         NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
-        switch(operationCode)
+        var handlers = EventMessageList.Where(h => (byte)h.Code == (byte)operationCode);
+
+        if (handlers == null || handlers.Count() == 0)
+            Debug.LogFormat("Default NET handler: Operation code: {0}", operationCode);
+
+        foreach (var handler in handlers)
         {
-            case NetOperationCode.SpawnPlayerCode:
-                {
-                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
-
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
-                        new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z), 
-                        Quaternion.identity)).GetComponent<PlayerController>();
-
-                    NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
-                    netObject.Id = playerData.Id;
-
-                    newPlayer.Health = playerData.Health;
-                    newPlayer.MoveSpeed = playerData.MoveSpeed;
-                    newPlayer.Damage = playerData.Damage;
-                    newPlayer.AttackRadius = playerData.AttackRadius;
-
-                    _netObjects.Add(playerData.Id, netObject);
-
-                    Debug.LogFormat("SpawnPlayer. PlayerId: {0}", playerData.Id);
-                }
-                break;
-
-            case NetOperationCode.SpawnPlayersCode:
-                {
-                    int playerCount = reader.GetInt();
-
-                    for (int i = 0; i < playerCount; i++)
-                    {
-                        var p = reader.GetString();
-
-                        Debug.Log($"SpawnPlayer... PlayerInfo: {p}");
-
-                        PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(p);
-
-                        PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
-                            new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z),
-                            Quaternion.identity)).GetComponent<PlayerController>();
-
-                        NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
-                        netObject.Id = playerData.Id;
-
-                        newPlayer.Health = playerData.Health;
-                        newPlayer.MoveSpeed = playerData.MoveSpeed;
-                        newPlayer.Damage = playerData.Damage;
-                        newPlayer.AttackRadius = playerData.AttackRadius;
-
-                        _netObjects.Add(playerData.Id, netObject);
-                    }
-
-                    Debug.LogFormat("SpawnPlayers. Count: {0}", playerCount);
-                }
-                break;
-
-            case NetOperationCode.WorldEnter:
-                {
-                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
-
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
-                        new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z),
-                        Quaternion.identity)).GetComponent<PlayerController>();
-
-                    NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
-                    netObject.Id = playerData.Id;
-                    netObject.IsMine = true;
-
-                    newPlayer.Health = playerData.Health;
-                    newPlayer.MoveSpeed = playerData.MoveSpeed;
-                    newPlayer.Damage = playerData.Damage;
-                    newPlayer.AttackRadius = playerData.AttackRadius;
-
-                    _netObjects.Add(playerData.Id, netObject);
-
-                    Debug.LogFormat("WorldEnter. PlayerId: {0}", playerData.Id);
-                }
-                break;
-
-            case NetOperationCode.MovePlayerCode:
-                {
-                    var id = reader.GetLong();
-                    PositionData positionData = MessageSerializerService.DeserializeObjectOfType<PositionData>(reader.GetString());
-
-                    if (OnMove != null)
-                    {
-                        Vector3 newPosition = new Vector3(positionData.X, positionData.Y, positionData.Z);
-
-                        OnMove(id, newPosition);
-
-                        Debug.LogFormat("Player move. Id: {0} | New pos: {1}", id, newPosition);
-                    }
-                }
-                break;
-
-            case NetOperationCode.DestroyPlayer:
-                {
-                    ParameterObject parameter = MessageSerializerService.DeserializeObjectOfType<ParameterObject>(reader.GetString());
-                    long id = (long)parameter.Parameter;
-
-                    if (_netObjects.ContainsKey(id))
-                    {
-                        Destroy(_netObjects[id].gameObject);
-                        _netObjects.Remove(id);
-                    }
-
-                    Debug.LogFormat("Destroy player. PlayerId: {0}", id);
-                }
-                break;
-
-            default:
-                Debug.Log("Default handler");
-                break;
+            Debug.Log(handler.Code);
+            handler.Notify(reader);
         }
     }
     
@@ -235,8 +136,23 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     #endregion
 
-    public void SendOperation(NetDataWriter dataWriter, SendOptions sendOptions)
+    public void OnMoveEvent(long id, Vector3 newPosition) => OnMove?.Invoke(id, newPosition);
+    
+    /// <summary>
+    /// Send operation to the server.
+    /// </summary>
+    /// <param name="dataWriter">Writer parameters</param>
+    /// <param name="sendOptions">Options for sending</param>
+    public void SendOperation(NetDataWriter dataWriter, SendOptions sendOptions) => _serverPeer.Send(dataWriter, sendOptions);
+
+    /// <summary>
+    /// Get all net message handlers and sort it.
+    /// </summary>
+    public void GatherMessageHandlers()
     {
-        _serverPeer.Send(dataWriter, sendOptions);
+        foreach (NetMessage message in Resources.LoadAll<NetMessage>(""))
+            EventMessageList.Add(message);
+
+        Debug.Log($"Load handlers... Found {EventMessageList.Count} handlers.");
     }
 }
