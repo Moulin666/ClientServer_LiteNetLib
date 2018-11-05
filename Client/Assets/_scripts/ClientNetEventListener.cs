@@ -4,13 +4,14 @@ using LiteNetLib.Utils;
 using System.Collections.Generic;
 using NetCommon.Codes;
 using NetCommon;
+using NetCommon.MessageObjects;
 
 
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
     #region Public variables
 
-    public delegate void MoveContainer(bool isMine, Vector3 newPosition);
+    public delegate void MoveContainer(long id, Vector3 newPosition);
     public event MoveContainer OnMove;
 
     /// <summary>
@@ -110,12 +111,17 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
                 {
                     PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
 
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
-                        .GetComponent<PlayerController>();
+                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
+                        new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z), 
+                        Quaternion.identity)).GetComponent<PlayerController>();
 
                     NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
                     netObject.Id = playerData.Id;
-                    netObject.IsMine = playerData.IsMine;
+
+                    newPlayer.Health = playerData.Health;
+                    newPlayer.MoveSpeed = playerData.MoveSpeed;
+                    newPlayer.Damage = playerData.Damage;
+                    newPlayer.AttackRadius = playerData.AttackRadius;
 
                     _netObjects.Add(playerData.Id, netObject);
 
@@ -131,16 +137,21 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
                     {
                         var p = reader.GetString();
 
-                        Debug.Log(p);
+                        Debug.Log($"SpawnPlayer... PlayerInfo: {p}");
 
                         PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(p);
 
-                        PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), new Vector3(playerData.X, playerData.Y, playerData.Z), Quaternion.identity))
-                            .GetComponent<PlayerController>();
+                        PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
+                            new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z),
+                            Quaternion.identity)).GetComponent<PlayerController>();
 
                         NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
                         netObject.Id = playerData.Id;
-                        netObject.IsMine = playerData.IsMine;
+
+                        newPlayer.Health = playerData.Health;
+                        newPlayer.MoveSpeed = playerData.MoveSpeed;
+                        newPlayer.Damage = playerData.Damage;
+                        newPlayer.AttackRadius = playerData.AttackRadius;
 
                         _netObjects.Add(playerData.Id, netObject);
                     }
@@ -153,12 +164,18 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
                 {
                     PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
 
-                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"), GameObject.Find("Spawn").transform.position, Quaternion.identity))
-                        .GetComponent<PlayerController>();
+                    PlayerController newPlayer = ((GameObject)Instantiate(Resources.Load("Objects/Player"),
+                        new Vector3(playerData.PositionData.X, playerData.PositionData.Y, playerData.PositionData.Z),
+                        Quaternion.identity)).GetComponent<PlayerController>();
 
                     NetObject netObject = newPlayer.gameObject.GetComponent<NetObject>();
                     netObject.Id = playerData.Id;
-                    netObject.IsMine = playerData.IsMine;
+                    netObject.IsMine = true;
+
+                    newPlayer.Health = playerData.Health;
+                    newPlayer.MoveSpeed = playerData.MoveSpeed;
+                    newPlayer.Damage = playerData.Damage;
+                    newPlayer.AttackRadius = playerData.AttackRadius;
 
                     _netObjects.Add(playerData.Id, netObject);
 
@@ -168,15 +185,16 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
             case NetOperationCode.MovePlayerCode:
                 {
-                    PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+                    var id = reader.GetLong();
+                    PositionData positionData = MessageSerializerService.DeserializeObjectOfType<PositionData>(reader.GetString());
 
                     if (OnMove != null)
                     {
-                        Vector3 newPosition = new Vector3(playerData.X, playerData.Y, playerData.Z);
+                        Vector3 newPosition = new Vector3(positionData.X, positionData.Y, positionData.Z);
 
-                        OnMove(playerData.IsMine, newPosition);
+                        OnMove(id, newPosition);
 
-                        Debug.LogFormat("Player move. Id: {0} | New pos: {1}", playerData.Id, newPosition);
+                        Debug.LogFormat("Player move. Id: {0} | New pos: {1}", id, newPosition);
                     }
                 }
                 break;

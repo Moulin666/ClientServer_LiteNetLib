@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 195618116779182362}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,6 @@ MonoBehaviour:
   Id: 0
   IsStatic: 0
   IsMine: 0
-  NetGameObject: {fileID: 0}
 --- !u!114 &114719482418577556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c944a907e9efc4da1372871ff69c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  MoveSpeed: 0
+  AttackRadius: 0
 --- !u!195 &195618116779182362
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -153,7 +156,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

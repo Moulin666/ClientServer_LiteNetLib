@@ -1,5 +1,5 @@
 ﻿using LiteNetLib;
-using NetCommon;
+using NetCommon.MessageObjects;
 
 
 namespace Server
@@ -14,13 +14,15 @@ namespace Server
         {
             NetPeer = peer;
 
+            // We can get this info from database.
             PlayerData = new PlayerData
             {
                 Id = peer.ConnectId,
-                X = 0,
-                Y = 5,
-                Z = 0,
-                IsMine = false,
+                PositionData = new PositionData(0, 5, 0),
+                Health = 100,
+                AttackRadius = 10,
+                Damage = 10,
+                MoveSpeed = 5f
             };
         }
 

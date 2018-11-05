@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NetCommon;
 using NetCommon.Codes;
+using NetCommon.MessageObjects;
 
 
 namespace Server
@@ -56,11 +57,11 @@ namespace Server
         {
             NetPlayer newPeer = new NetPlayer(peer);
 
-            var serializeNewPeer = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
+            var serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
 
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
-            _dataWriter.Put(serializeNewPeer);
+            _dataWriter.Put(serializeNewPeerPlayerData);
 
             foreach (var p in _peers)
                 p.Value.NetPeer.Send(_dataWriter, SendOptions.ReliableOrdered);
@@ -77,20 +78,13 @@ namespace Server
                 peer.Send(_dataWriter, SendOptions.ReliableOrdered);
             }
 
-            serializeNewPeer = MessageSerializerService.SerializeObjectOfType(new PlayerData
-            {
-                Id = newPeer.PlayerData.Id,
-                X = newPeer.PlayerData.X,
-                Y = newPeer.PlayerData.Y,
-                Z = newPeer.PlayerData.Z,
-                IsMine = true
-            });
+            serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
 
             _dataWriter.Reset();
             _dataWriter.Put((byte)NetOperationCode.WorldEnter);
-            _dataWriter.Put(serializeNewPeer);
+            _dataWriter.Put(serializeNewPeerPlayerData);
 
-            peer.Send(_dataWriter, SendOptions.Sequenced);
+            peer.Send(_dataWriter, SendOptions.ReliableOrdered);
 
             _peers.Add(peer.ConnectId, newPeer);
 
@@ -128,29 +122,29 @@ namespace Server
             {
                 case NetOperationCode.MovePlayerCode:
                     {
-                        PlayerData playerData = MessageSerializerService.DeserializeObjectOfType<PlayerData>(reader.GetString());
+                        long id = reader.GetLong();
 
-                        if (_peers.ContainsKey(playerData.Id))
+                        if (_peers.ContainsKey(id))
                         {
-                            var player = _peers[playerData.Id];
-                            player.PlayerData.X = playerData.X;
-                            player.PlayerData.Y = playerData.Y;
-                            player.PlayerData.Z = playerData.Z;
+                            var serializePositionData = reader.GetString();
+                            PositionData positionData = MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
 
-                            _peers[playerData.Id] = player;
+                            var player = _peers[id];
+                            player.PlayerData.PositionData = positionData;
 
-                            var serializePeer = MessageSerializerService.SerializeObjectOfType(player.PlayerData);
+                            _peers[id] = player;
 
                             _dataWriter.Reset();
                             _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
-                            _dataWriter.Put(serializePeer);
+                            _dataWriter.Put(id);
+                            _dataWriter.Put(serializePositionData);
 
                             foreach (var p in _peers)
                                 if (p.Value.NetPeer.ConnectId != peer.ConnectId)
                                     p.Value.NetPeer.Send(_dataWriter, SendOptions.Sequenced);
 
                             Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
-                                player.PlayerData.Id, player.PlayerData.X, player.PlayerData.Y, player.PlayerData.Z));
+                                player.PlayerData.Id, player.PlayerData.PositionData.X, player.PlayerData.PositionData.Y, player.PlayerData.PositionData.Z));
                         }
                     }
                     break;
