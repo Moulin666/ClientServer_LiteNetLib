@@ -1,34 +1,24 @@
 ﻿<RecentlyViewedMethods>
   <RecentlyViewedMethods>
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.GatherMessageHandlers" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ASpawnPlayersHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ADestroyPlayerHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ASpawnPlayersHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AMovePlayerHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
+    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
+    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.NetPlayer.%23ctor%28LiteNetLib.NetPeer%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ADestroyPlayerHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnMoveEvent%28System.Int64%2CUnityEngine.Vector3%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceiveUnconnected%28LiteNetLib.NetEndPoint%2CLiteNetLib.Utils.NetDataReader%2CLiteNetLib.UnconnectedMessageType%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.OnEnable" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.GatherMessageHandlers" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessage.Notify%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkError%28LiteNetLib.NetEndPoint%2CSystem.Int32%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessage.Unsubscribe%28NetMessageHandler%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.OnDisable" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessage.Notify%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessage.Unsubscribe%28NetMessageHandler%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.GatherMessageHandlers" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceiveUnconnected%28LiteNetLib.NetEndPoint%2CLiteNetLib.Utils.NetDataReader%2CLiteNetLib.UnconnectedMessageType%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnMoveEvent%28System.Int64%2CUnityEngine.Vector3%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ADestroyPlayerHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
   </RecentlyViewedMethods>
 </RecentlyViewedMethods>

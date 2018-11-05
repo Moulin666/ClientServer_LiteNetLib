@@ -26,8 +26,7 @@ public abstract class NetMessageHandler : MonoBehaviour
     /// Handle message.
     /// </summary>
     /// <param name="reader">Reader of parameters</param>
-    public void HandleMessage(NetDataReader reader)
-        => OnHandleMessage(reader);
+    public void HandleMessage(NetDataReader reader) => OnHandleMessage(reader);
 
     /// <summary>
     /// Event of handle message.

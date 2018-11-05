@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using NetCommon.Codes;
 using System.Linq;
 
+
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
     #region Public variables
@@ -40,12 +41,11 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     private NetManager _netManager;
     private NetPeer _serverPeer;
-   
 
     /// <summary>
     /// List event net messages.
     /// </summary>
-    protected List<NetMessage> EventMessageList = new List<NetMessage>();
+    protected List<NetMessage> NetMessageList = new List<NetMessage>();
 
     #endregion
 
@@ -109,16 +109,13 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
         NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
-        var handlers = EventMessageList.Where(h => (byte)h.Code == (byte)operationCode);
+        var handlers = NetMessageList.Where(h => (byte)h.Code == (byte)operationCode);
 
         if (handlers == null || handlers.Count() == 0)
             Debug.LogFormat("Default NET handler: Operation code: {0}", operationCode);
 
         foreach (var handler in handlers)
-        {
-            Debug.Log(handler.Code);
             handler.Notify(reader);
-        }
     }
     
     public void OnPeerConnected(NetPeer peer)
@@ -151,8 +148,8 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     public void GatherMessageHandlers()
     {
         foreach (NetMessage message in Resources.LoadAll<NetMessage>(""))
-            EventMessageList.Add(message);
+            NetMessageList.Add(message);
 
-        Debug.Log($"Load handlers... Found {EventMessageList.Count} handlers.");
+        Debug.Log($"Load handlers... Found {NetMessageList.Count} handlers.");
     }
 }
