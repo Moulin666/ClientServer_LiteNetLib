@@ -17,7 +17,7 @@ namespace Server
             // We can get this info from database.
             PlayerData = new PlayerData
             {
-                Id = peer.ConnectId,
+                Id = peer.Id,
                 PositionData = new PositionData(0, 5, 0),
                 Health = 100,
                 AttackRadius = 10,

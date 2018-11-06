@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LiteNetLib" Version="0.7.7.2" />
+    <Folder Include="ServerHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ServerHandlers\" />
+    <Reference Include="LiteNetLib">
+      <HintPath>..\packages\LiteNetLib8\lib\netstandard2.0\LiteNetLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

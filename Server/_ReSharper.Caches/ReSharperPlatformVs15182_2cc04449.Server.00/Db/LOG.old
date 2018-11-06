@@ -1,56 +1,33 @@
-2018/11/06-16:58:06.078 4140 Recovering log #178
-2018/11/06-16:58:06.093 4140 Level-0 table #187: started
-2018/11/06-16:58:06.143 4140 Level-0 table #187: 491199 bytes OK
-2018/11/06-16:58:06.176 4140 Delete type=0 #178
-2018/11/06-16:58:06.176 4140 Delete type=3 #176
-2018/11/06-16:58:06.910 3bcc Compacting 1@0 + 5@1 files
-2018/11/06-16:58:06.996 3bcc Generated table #189: 6001 keys, 446139 bytes
-2018/11/06-16:58:07.269 3bcc Generated table #190: 2679 keys, 2191128 bytes
-2018/11/06-16:58:08.150 3bcc Generated table #191: 3269 keys, 2182428 bytes
-2018/11/06-16:58:08.974 3bcc Generated table #192: 2849 keys, 2162630 bytes
-2018/11/06-16:58:09.073 3bcc Generated table #193: 96 keys, 137461 bytes
-2018/11/06-16:58:09.117 3bcc Generated table #194: 177 keys, 80850 bytes
-2018/11/06-16:58:09.117 3bcc Compacted 1@0 + 5@1 files => 7200636 bytes
-2018/11/06-16:58:09.133 3bcc Delete type=2 #179
-2018/11/06-16:58:09.134 3bcc Delete type=2 #180
-2018/11/06-16:58:09.134 3bcc Delete type=2 #181
-2018/11/06-16:58:09.135 3bcc Delete type=2 #182
-2018/11/06-16:58:09.135 3bcc Delete type=2 #183
-2018/11/06-16:58:09.135 3bcc Delete type=2 #187
-2018/11/06-16:58:09.135 3bcc compacted to: files[ 0 6 36 0 0 0 0 ]
-2018/11/06-16:58:09.717 3bcc Compacting 1@1 + 1@2 files
-2018/11/06-16:58:09.957 3bcc Generated table #195: 5858 keys, 2149862 bytes
-2018/11/06-16:58:09.963 3bcc Generated table #196: 83 keys, 43737 bytes
-2018/11/06-16:58:09.963 3bcc Compacted 1@1 + 1@2 files => 2193599 bytes
-2018/11/06-16:58:09.978 3bcc Delete type=2 #164
-2018/11/06-16:58:09.979 3bcc Delete type=2 #189
-2018/11/06-16:58:09.979 3bcc compacted to: files[ 0 5 37 0 0 0 0 ]
-2018/11/06-16:58:19.230 3bcc Compacting 1@1 + 1@2 files
-2018/11/06-16:58:19.441 3bcc Generated table #197: 1780 keys, 1278097 bytes
-2018/11/06-16:58:19.441 3bcc Compacted 1@1 + 1@2 files => 1278097 bytes
-2018/11/06-16:58:19.445 3bcc Delete type=2 #185
-2018/11/06-16:58:19.446 3bcc Delete type=2 #194
-2018/11/06-16:58:19.446 3bcc compacted to: files[ 0 4 37 0 0 0 0 ]
-2018/11/06-17:51:00.470 3bcc Level-0 table #199: started
-2018/11/06-17:51:00.848 3bcc Level-0 table #199: 3727853 bytes OK
-2018/11/06-17:51:00.870 3bcc Delete type=0 #188
-2018/11/06-18:17:04.630 3bcc Compacting 1@0 + 4@1 files
-2018/11/06-18:17:04.682 3bcc Generated table #200: 826 keys, 224691 bytes
-2018/11/06-18:17:05.022 3bcc Generated table #201: 2679 keys, 2191128 bytes
-2018/11/06-18:17:05.303 3bcc Generated table #202: 3269 keys, 2182428 bytes
-2018/11/06-18:17:05.677 3bcc Generated table #203: 2849 keys, 2162630 bytes
-2018/11/06-18:17:05.801 3bcc Generated table #204: 96 keys, 137461 bytes
-2018/11/06-18:17:05.845 3bcc Generated table #205: 320 keys, 149129 bytes
-2018/11/06-18:17:05.845 3bcc Compacted 1@0 + 4@1 files => 7047467 bytes
-2018/11/06-18:17:05.853 3bcc Delete type=2 #190
-2018/11/06-18:17:05.854 3bcc Delete type=2 #191
-2018/11/06-18:17:05.854 3bcc Delete type=2 #192
-2018/11/06-18:17:05.854 3bcc Delete type=2 #193
-2018/11/06-18:17:05.855 3bcc Delete type=2 #199
-2018/11/06-18:17:05.855 3bcc compacted to: files[ 0 6 37 0 0 0 0 ]
-2018/11/06-18:18:46.132 3bcc Compacting 1@1 + 1@2 files
-2018/11/06-18:18:46.355 3bcc Generated table #206: 1817 keys, 1326156 bytes
-2018/11/06-18:18:46.355 3bcc Compacted 1@1 + 1@2 files => 1326156 bytes
-2018/11/06-18:18:46.366 3bcc Delete type=2 #197
-2018/11/06-18:18:46.366 3bcc Delete type=2 #205
-2018/11/06-18:18:46.366 3bcc compacted to: files[ 0 5 37 0 0 0 0 ]
+2018/11/06-19:30:51.517 fd8 Recovering log #198
+2018/11/06-19:30:51.527 fd8 Level-0 table #208: started
+2018/11/06-19:30:51.561 fd8 Level-0 table #208: 488080 bytes OK
+2018/11/06-19:30:51.601 fd8 Delete type=0 #198
+2018/11/06-19:30:51.602 fd8 Delete type=3 #186
+2018/11/06-19:30:52.623 718 Compacting 1@0 + 5@1 files
+2018/11/06-19:30:52.764 718 Generated table #210: 870 keys, 228983 bytes
+2018/11/06-19:30:53.267 718 Generated table #211: 2679 keys, 2191128 bytes
+2018/11/06-19:30:54.016 718 Generated table #212: 3269 keys, 2182428 bytes
+2018/11/06-19:30:54.827 718 Generated table #213: 2849 keys, 2162630 bytes
+2018/11/06-19:30:54.939 718 Generated table #214: 96 keys, 137461 bytes
+2018/11/06-19:30:54.990 718 Generated table #215: 56 keys, 78022 bytes
+2018/11/06-19:30:54.990 718 Compacted 1@0 + 5@1 files => 6980652 bytes
+2018/11/06-19:30:55.021 718 Delete type=2 #200
+2018/11/06-19:30:55.022 718 Delete type=2 #201
+2018/11/06-19:30:55.022 718 Delete type=2 #202
+2018/11/06-19:30:55.023 718 Delete type=2 #203
+2018/11/06-19:30:55.023 718 Delete type=2 #204
+2018/11/06-19:30:55.024 718 Delete type=2 #208
+2018/11/06-19:30:55.024 718 compacted to: files[ 0 6 37 0 0 0 0 ]
+2018/11/06-19:30:55.314 718 Compacting 1@1 + 1@2 files
+2018/11/06-19:30:55.722 718 Generated table #216: 5874 keys, 2149856 bytes
+2018/11/06-19:30:55.758 718 Generated table #217: 9 keys, 4446 bytes
+2018/11/06-19:30:55.758 718 Compacted 1@1 + 1@2 files => 2154302 bytes
+2018/11/06-19:30:55.786 718 Delete type=2 #195
+2018/11/06-19:30:55.787 718 Delete type=2 #210
+2018/11/06-19:30:55.787 718 compacted to: files[ 0 5 38 0 0 0 0 ]
+2018/11/06-19:31:13.125 718 Compacting 1@1 + 1@2 files
+2018/11/06-19:31:14.505 718 Generated table #218: 1819 keys, 1327381 bytes
+2018/11/06-19:31:14.505 718 Compacted 1@1 + 1@2 files => 1327381 bytes
+2018/11/06-19:31:14.602 718 Delete type=2 #206
+2018/11/06-19:31:14.602 718 Delete type=2 #215
+2018/11/06-19:31:14.602 718 compacted to: files[ 0 4 38 0 0 0 0 ]

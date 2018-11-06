@@ -15,7 +15,7 @@ namespace Server
 
             while (operation == "start")
             {
-                _server = new ServerNetEventListener(100, "TestServer");
+                _server = new ServerNetEventListener();
                 _server.Start(15000);
 
                 Console.ReadKey();

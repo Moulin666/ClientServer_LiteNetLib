@@ -4,7 +4,8 @@ using LiteNetLib.Utils;
 using System.Collections.Generic;
 using NetCommon.Codes;
 using System.Linq;
-
+using System.Net;
+using System.Net.Sockets;
 
 public class ClientNetEventListener : MonoBehaviour, INetEventListener
 {
@@ -65,11 +66,11 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     private void Start()
     {
-        _netManager = new NetManager(this, ConnectionKey);
+        _netManager = new NetManager(this);
 
         if (_netManager.Start())
         {
-            _netManager.Connect(ServerAddress, ServerPort);
+            _netManager.Connect(ServerAddress, ServerPort, ConnectionKey);
             Debug.Log("Client net manager started!");
         }
         else
@@ -96,16 +97,18 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
 
     public void OnNetworkLatencyUpdate(NetPeer peer, int latency) {  }
 
-    public void OnNetworkReceiveUnconnected(NetEndPoint remoteEndPoint, NetDataReader reader, UnconnectedMessageType messageType) {  }
+    public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader, UnconnectedMessageType messageType) {  }
 
-    public void OnNetworkError(NetEndPoint endPoint, int socketErrorCode) => Debug.LogError($"OnNetworkError: {socketErrorCode}");
+    public void OnConnectionRequest(ConnectionRequest request) => Debug.Log($"ConnectionRequest. RemoteEndPoint: {request.RemoteEndPoint}");
 
-    public void OnNetworkReceive(NetPeer peer, NetDataReader reader)
+    public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) => Debug.LogError($"OnNetworkError: {socketErrorCode}");
+
+    public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
     {
-        if (reader.Data == null)
+        if (reader.RawData == null)
             return;
 
-        Debug.Log($"OnNetworkReceive: {reader.Data.Length}");
+        Debug.Log($"OnNetworkReceive: {reader.RawData.Length}");
 
         NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
@@ -140,7 +143,7 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
     /// </summary>
     /// <param name="dataWriter">Writer parameters</param>
     /// <param name="sendOptions">Options for sending</param>
-    public void SendOperation(NetDataWriter dataWriter, SendOptions sendOptions) => _serverPeer.Send(dataWriter, sendOptions);
+    public void SendOperation(NetDataWriter dataWriter, DeliveryMethod deliveryMethod) => _serverPeer.Send(dataWriter, deliveryMethod);
 
     /// <summary>
     /// Get all net message handlers and sort it.
