@@ -37,11 +37,11 @@ public class PlayerController : MonoBehaviour
             InputUpdate();
 
             if (_isAttack && _target != null)
-            {
+            { 
                 if (Vector3.Distance(transform.position, _target.transform.position) > AttackRadius)
-                    _agent.destination = _target.transform.position;
+                    _agent.SetDestination(_target.transform.position);
                 else
-                    _agent.destination = transform.position;
+                    _agent.SetDestination(transform.position);
             }
         }
     }
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 _isAttack = false;
-                _agent.destination = hit.point;
+                _agent.SetDestination(hit.point);
             }
         }
     }

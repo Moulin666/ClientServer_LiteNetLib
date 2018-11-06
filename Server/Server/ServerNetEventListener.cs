@@ -17,22 +17,30 @@ namespace Server
 
         private Dictionary<long, NetPlayer> _peers;
 
-        public ServerNetEventListener()
+        public ServerNetEventListener(int maxConnections, string connectKey)
         {
             _dataWriter = new NetDataWriter();
-            _netServer = new NetManager(this, 100, "TestServer");
-            _netServer.Start(15000);
-            _netServer.UpdateTime = 15;
+            _netServer = new NetManager(this, maxConnections, connectKey);
+
+            Console.WriteLine($"Server setup. MaxConnections: {maxConnections}, ConnectKey: {connectKey}");
 
             _peers = new Dictionary<long, NetPlayer>();
+        } 
 
-            Console.WriteLine("Server setup.");
+        public void Start (int port)
+        {
+            _netServer.Start(port);
+            _netServer.UpdateTime = 15;
+
+            Console.WriteLine($"Server setup at port: {port}");
 
             while (_netServer.IsRunning)
             {
                 _netServer.PollEvents();
                 Thread.Sleep(15);
             }
+
+            Stop();
         }
 
         public void Stop()

@@ -13,4 +13,8 @@
     <ProjectReference Include="..\NetCommon\NetCommon.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServerHandlers\" />
+  </ItemGroup>
+
 </Project>

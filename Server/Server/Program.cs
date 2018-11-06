@@ -9,7 +9,8 @@ namespace Server
         {
             Console.WriteLine("Start application.");
 
-            ServerNetEventListener server = new ServerNetEventListener();
+            ServerNetEventListener server = new ServerNetEventListener(100, "TestServer");
+            server.Start(15000);
         }
     }
 }
