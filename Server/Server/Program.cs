@@ -5,12 +5,25 @@ namespace Server
 {
     public class Program
     {
+        private static ServerNetEventListener _server;
+
         private static void Main(string[] args)
         {
             Console.WriteLine("Start application.");
 
-            ServerNetEventListener server = new ServerNetEventListener(100, "TestServer");
-            server.Start(15000);
+            var operation = "start";
+
+            while (operation == "start")
+            {
+                _server = new ServerNetEventListener(100, "TestServer");
+                _server.Start(15000);
+
+                Console.ReadKey();
+
+                _server.Stop();
+
+                operation = Console.ReadLine();
+            }
         }
     }
 }

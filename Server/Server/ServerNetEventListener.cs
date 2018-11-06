@@ -34,13 +34,17 @@ namespace Server
 
             Console.WriteLine($"Server setup at port: {port}");
 
+            Thread poolEventsThread = new Thread(PoolEventsUpdate) { Name = "PoolEventsThread", IsBackground = true };
+            poolEventsThread.Start();
+        }
+
+        public void PoolEventsUpdate ()
+        {
             while (_netServer.IsRunning)
             {
                 _netServer.PollEvents();
                 Thread.Sleep(15);
             }
-
-            Stop();
         }
 
         public void Stop()
