@@ -1,35 +1,36 @@
 ﻿using LiteNetLib;
-using LiteNetLib.Utils;
+using NetCommon.Codes;
+using Server.GameData;
+using Server.Message.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using NetCommon;
-using NetCommon.Codes;
-using NetCommon.MessageObjects;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
+using System.Threading;
 
 
 namespace Server
 {
     public class ServerNetEventListener : INetEventListener
     {
+        public Dictionary<long, Client> ConnectedClients;
+
+        public List<INetMessageHandler> NetMessageHandlerList { get; protected set; }
+
         private NetManager _netServer;
-        private NetDataWriter _dataWriter;
 
         private Thread _poolEventsThread;
 
-        private Dictionary<long, NetPlayer> _peers;
-
-        public ServerNetEventListener()
+        public ServerNetEventListener ()
         {
-            _dataWriter = new NetDataWriter();
             _netServer = new NetManager(this);
 
             Console.WriteLine($"Server setup.");
 
-            _peers = new Dictionary<long, NetPlayer>();
-        } 
+            ConnectedClients = new Dictionary<long, Client>();
+        }
 
         public void Start (int port)
         {
@@ -38,8 +39,32 @@ namespace Server
 
             Console.WriteLine($"Server setup at port: {port}");
 
-            _poolEventsThread = new Thread(PoolEventsUpdate) { Name = "PoolEventsThread", IsBackground = true };
+            _poolEventsThread = new Thread(PoolEventsUpdate)
+            {
+                Name = "PoolEventsThread",
+                IsBackground = true
+            };
             _poolEventsThread.Start();
+
+            GatherMessageHandlers();
+
+            // TODO : Create session by API server and get session id from API server.
+            byte[] sessionId = new byte[12]
+            {
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            };
+            SessionCache.Instance.CreateSession(sessionId);
         }
 
         public void PoolEventsUpdate ()
@@ -51,134 +76,147 @@ namespace Server
             }
         }
 
-        public void Stop()
+        public void Stop ()
         {
-            foreach (var peer in _peers)
+            foreach (var peer in ConnectedClients)
                 _netServer.DisconnectPeer(peer.Value.NetPeer);
 
-            Console.WriteLine(string.Format("Server stopping. Disconnected {0} peers.", _peers.Count));
+            Console.WriteLine(string.Format("Server stopping. Disconnected {0} peers.", ConnectedClients.Count));
 
-            _peers.Clear();
+            ConnectedClients.Clear();
+
+            _netServer.Stop(true);
 
             _poolEventsThread.Join();
             _poolEventsThread = null;
+        }
 
-            _netServer.Stop();
+        public void GatherMessageHandlers ()
+        {
+            var handlers = from t in Assembly.GetAssembly(GetType()).GetTypes().Where(t => t.GetInterfaces()
+                .Contains(typeof (INetMessageHandler)))
+                select Activator.CreateInstance(t) as INetMessageHandler;
+
+            Console.WriteLine(string.Format("Load handlers. Found {0} handlers.", handlers.Count()));
+
+            NetMessageHandlerList = handlers.ToList();
         }
 
         #region Implements of INetEventListener
 
-        public void OnNetworkLatencyUpdate(NetPeer peer, int latency) { }
+        public void OnNetworkLatencyUpdate (NetPeer peer, int latency) { }
 
-        public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader, UnconnectedMessageType messageType) { }
+        public void OnNetworkReceiveUnconnected (IPEndPoint remoteEndPoint, NetPacketReader reader,
+            UnconnectedMessageType messageType) { }
 
-        public void OnConnectionRequest (ConnectionRequest request)
+        public void OnConnectionRequest (ConnectionRequest request) => request.AcceptIfKey("TestServer");
+
+        public void OnNetworkError (IPEndPoint endPoint, SocketError socketErrorCode)
+            =>
+                Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint,
+                    socketErrorCode));
+
+        public void OnPeerConnected (NetPeer peer)
         {
-            request.AcceptIfKey("TestServer");
+            Client newPeer = new Client(peer, this);
+
+            //var serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
+
+            //_dataWriter.Reset();
+            //_dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
+            //_dataWriter.Put(serializeNewPeerPlayerData);
+
+            //foreach (var p in ConnectedClients)
+            //    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
+
+            //if (ConnectedClients.Count > 0)
+            //{
+            //    _dataWriter.Reset();
+            //    _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
+            //    _dataWriter.Put(ConnectedClients.Count);
+
+            //    foreach (var p in ConnectedClients)
+            //        _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData));
+
+            //    peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
+            //}
+
+            //serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
+
+            //_dataWriter.Reset();
+            //_dataWriter.Put((byte)NetOperationCode.WorldEnter);
+            //_dataWriter.Put(serializeNewPeerPlayerData);
+
+            //peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
+
+            //Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.Id));
         }
 
-        public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode) => Console.WriteLine(string.Format("Network Error. EndPoint: {0} | ErrorCode: {1}", endPoint, socketErrorCode));
-
-        public void OnPeerConnected(NetPeer peer)
+        public void OnPeerDisconnected (NetPeer peer, DisconnectInfo disconnectInfo)
         {
-            NetPlayer newPeer = new NetPlayer(peer);
+            if (ConnectedClients.ContainsKey(peer.Id))
+                ConnectedClients[peer.Id].Disconnect(disconnectInfo);
 
-            var serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
+            //_dataWriter.Reset();
+            //_dataWriter.Put((byte)NetOperationCode.DestroyPlayer);
+            //_dataWriter.Put(
+            //    MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.PlayerId, peer.Id)));
 
-            _dataWriter.Reset();
-            _dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
-            _dataWriter.Put(serializeNewPeerPlayerData);
-
-            foreach (var p in _peers)
-                p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-
-            if (_peers.Count > 0)
-            {
-                _dataWriter.Reset();
-                _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
-                _dataWriter.Put(_peers.Count);
-
-                foreach (var p in _peers)
-                    _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData));
-
-                peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-            }
-
-            serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
-
-            _dataWriter.Reset();
-            _dataWriter.Put((byte)NetOperationCode.WorldEnter);
-            _dataWriter.Put(serializeNewPeerPlayerData);
-
-            peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-
-            _peers.Add(peer.Id, newPeer);
-
-            Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.Id));
+            //foreach (var p in ConnectedClients)
+            //    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
         }
 
-        public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
-        {
-            Console.WriteLine(string.Format("Disconnected peer. EndPoint: {0} | DisconnectReason: {1}", peer.EndPoint, disconnectInfo.Reason));
-
-            if (_peers.ContainsKey(peer.Id))
-            {
-                _peers.Remove(peer.Id);
-                Console.WriteLine(string.Format("(Peer {0}): Disconnected", peer.Id));
-            }
-
-            _dataWriter.Reset();
-            _dataWriter.Put((byte)NetOperationCode.DestroyPlayer);
-            _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(new ParameterObject(NetParameterCode.PlayerId, peer.Id)));
-
-            foreach (var p in _peers)
-                p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-        }
-
-        public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
+        public void OnNetworkReceive (NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
         {
             if (reader.RawData == null)
                 return;
 
             Console.WriteLine($"OnNetworkReceive: {reader.RawData.Length}");
 
-            NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
-
-            switch (operationCode)
+            if (ConnectedClients.ContainsKey(peer.Id))
             {
-                case NetOperationCode.MovePlayerCode:
-                    {
-                        long id = reader.GetLong();
+                NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
-                        if (_peers.ContainsKey(id))
-                        {
-                            var serializePositionData = reader.GetString();
-                            PositionData positionData = MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
-
-                            var player = _peers[id];
-                            player.PlayerData.PositionData = positionData;
-
-                            _peers[id] = player;
-
-                            _dataWriter.Reset();
-                            _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
-                            _dataWriter.Put(id);
-                            _dataWriter.Put(serializePositionData);
-
-                            foreach (var p in _peers)
-                                if (p.Value.NetPeer.Id != peer.Id)
-                                    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.Sequenced);
-
-                            Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
-                                player.PlayerData.Id, player.PlayerData.PositionData.X, player.PlayerData.PositionData.Y, player.PlayerData.PositionData.Z));
-                        }
-                    }
-                    break;
-
-                default:
-                    Console.WriteLine("Default handler");
-                    break;
+                ConnectedClients[peer.Id].NetworkReceive(operationCode, reader, deliveryMethod);
             }
+
+            //switch (operationCode)
+            //{
+            //    case NetOperationCode.MovePlayerCode:
+            //    {
+            //        long id = reader.GetLong();
+
+            //        if (ConnectedClients.ContainsKey(id))
+            //        {
+            //            var serializePositionData = reader.GetString();
+            //            PositionData positionData =
+            //                MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
+
+            //            var player = ConnectedClients[id];
+            //            player.PlayerData.PositionData = positionData;
+
+            //            ConnectedClients[id] = player;
+
+            //            _dataWriter.Reset();
+            //            _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+            //            _dataWriter.Put(id);
+            //            _dataWriter.Put(serializePositionData);
+
+            //            foreach (var p in ConnectedClients)
+            //                if (p.Value.NetPeer.Id != peer.Id)
+            //                    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.Sequenced);
+
+            //            Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
+            //                player.PlayerData.Id, player.PlayerData.PositionData.X, player.PlayerData.PositionData.Y,
+            //                player.PlayerData.PositionData.Z));
+            //        }
+            //    }
+            //        break;
+
+            //    default:
+            //        Console.WriteLine("Default handler");
+            //        break;
+            //}
         }
 
         #endregion

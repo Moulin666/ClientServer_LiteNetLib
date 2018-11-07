@@ -1,4 +1,5 @@
-﻿using LiteNetLib.Utils;
+﻿using LiteNetLib;
+using LiteNetLib.Utils;
 using NetCommon.Codes;
 
 
@@ -8,6 +9,10 @@ namespace Server.Message.Interfaces
     {
         NetOperationCode Code { get; }
 
+        Client Client { get; }
+
         NetDataReader Reader { get; }
+
+        DeliveryMethod DeliveryMethod { get; }
     }
 }

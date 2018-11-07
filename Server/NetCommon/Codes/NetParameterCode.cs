@@ -6,6 +6,8 @@
 
         CountOfPlayer,
 
-        PlayerId
+        PlayerId,
+
+        SessionId,
     }
 }

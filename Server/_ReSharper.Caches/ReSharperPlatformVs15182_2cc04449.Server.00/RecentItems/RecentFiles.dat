@@ -2,57 +2,62 @@
   <RecentFiles>
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="1301" fromTop="31" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="674" fromTop="0" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="0" fromTop="0" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="98" fromTop="5" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessageHandler.cs" caret="179" fromTop="8" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessage.cs" caret="225" fromTop="3" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="145" fromTop="7" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:ScriptableObject/f:NetMessage.cs" caret="839" fromTop="32" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Message/f:NetMessageHandler.cs" caret="0" fromTop="0" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="738" fromTop="21" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:PlayerController.cs" caret="45" fromTop="3" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:NetObject.cs" caret="1070" fromTop="12" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2804" fromTop="10" />
-    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetOperationCode.cs" caret="0" fromTop="0" />
-    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetParameterCode.cs" caret="0" fromTop="0" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/f:MessageSerializerService.cs" caret="0" fromTop="0" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/f:ParameterObject.cs" caret="0" fromTop="0" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:MessageObjects/f:PositionData.cs" caret="0" fromTop="0" />
-    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:MessageObjects/f:PlayerData.cs" caret="0" fromTop="0" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="438" fromTop="18" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:NetPlayer.cs" caret="753" fromTop="30" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="260" fromTop="12" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="511" fromTop="22" />
+    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:MessageObjects/f:PlayerData.cs" caret="185" fromTop="9" />
+    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:MessageObjects/f:UnitData.cs" caret="17" fromTop="2" />
+    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetParameterCode.cs" caret="158" fromTop="10" />
+    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetOperationCode.cs" caret="254" fromTop="17" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:Unit.cs" caret="308" fromTop="14" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessageHandler.cs" caret="0" fromTop="0" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessage.cs" caret="211" fromTop="11" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="104" fromTop="5" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:Session.cs" caret="94" fromTop="4" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1131" fromTop="21" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="0" fromTop="0" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3914" fromTop="19" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:NetObject.cs" caret="0" fromTop="0" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:PlayerController.cs" caret="361" fromTop="20" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="552" fromTop="22" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="1721" fromTop="24" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="3018" fromTop="16" />
   </RecentFiles>
   <RecentEdits>
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="281" fromTop="13" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="435" fromTop="11" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1115" fromTop="25" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1406" fromTop="19" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1528" fromTop="23" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1764" fromTop="30" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2661" fromTop="24" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2585" fromTop="23" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="1625" fromTop="20" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="1748" fromTop="24" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="4316" fromTop="27" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="4667" fromTop="31" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3027" fromTop="24" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:NetObject.cs" caret="1645" fromTop="26" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="2257" fromTop="33" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="6699" fromTop="25" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="2126" fromTop="21" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="242" fromTop="11" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="3331" fromTop="21" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="2892" fromTop="21" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="870" fromTop="27" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="4962" fromTop="24" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="3868" fromTop="23" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="4567" fromTop="38" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="6097" fromTop="21" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="714" fromTop="19" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="397" fromTop="17" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="2175" fromTop="29" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:NetPlayer.cs" caret="432" fromTop="19" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="4286" fromTop="13" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="463" fromTop="9" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="2889" fromTop="32" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1278" fromTop="7" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="270" fromTop="12" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="17" fromTop="0" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="209" fromTop="8" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="2150" fromTop="41" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="359" fromTop="7" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1206" fromTop="24" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1478" fromTop="30" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="853" fromTop="14" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="853" fromTop="20" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="902" fromTop="28" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="118" fromTop="6" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="256" fromTop="10" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessageHandler.cs" caret="154" fromTop="9" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessageHandler.cs" caret="1" fromTop="0" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="497" fromTop="18" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="292" fromTop="12" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="806" fromTop="29" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessage.cs" caret="211" fromTop="11" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1107" fromTop="18" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="0" fromTop="0" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="499" fromTop="16" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3894" fromTop="21" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="3093" fromTop="21" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2847" fromTop="14" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="2545" fromTop="11" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:ClientNetEventListener.cs" caret="4710" fromTop="37" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="8001" fromTop="36" />
   </RecentEdits>
 </RecentFiles>

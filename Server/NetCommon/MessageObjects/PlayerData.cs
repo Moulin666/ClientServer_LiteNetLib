@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace NetCommon.MessageObjects
@@ -8,14 +9,6 @@ namespace NetCommon.MessageObjects
     {
         public long Id { get; set; }
 
-        public PositionData PositionData { get; set; }
-
-        public float Health { get; set; }
-
-        public float Damage { get; set; }
-
-        public float MoveSpeed { get; set; }
-
-        public float AttackRadius { get; set; }
+        public List<UnitData> Units;
     }
 }

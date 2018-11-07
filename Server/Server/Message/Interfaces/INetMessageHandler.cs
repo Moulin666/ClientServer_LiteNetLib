@@ -1,5 +1,4 @@
-﻿using LiteNetLib.Utils;
-using NetCommon.Codes;
+﻿using NetCommon.Codes;
 
 
 namespace Server.Message.Interfaces
@@ -7,8 +6,6 @@ namespace Server.Message.Interfaces
     public interface INetMessageHandler
     {
         NetOperationCode Code { get; }
-
-        NetDataReader Reader { get; }
 
         bool HandleMessage(INetMessage message);
     }
