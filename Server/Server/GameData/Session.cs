@@ -36,10 +36,11 @@ namespace Server.GameData
         {
             lock (Players)
             {
-                if (!Players.ContainsKey(player.NetPeer.Id) && Players.Count < 2)
-                    Players[player.NetPeer.Id] = player;
+                if (Players.ContainsKey(player.NetPeer.Id) || Players.Count >= 2)
+                    return false;
 
-                return false;
+                Players[player.NetPeer.Id] = player;
+                return true;
             }
         }
 

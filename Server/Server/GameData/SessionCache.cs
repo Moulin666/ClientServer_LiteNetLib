@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Server.Utils;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -6,11 +7,22 @@ namespace Server.GameData
 {
     public class SessionCache
     {
-        public static SessionCache Instance = new SessionCache();
+        private static SessionCache _instance;
+
+        public static SessionCache Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new SessionCache();
+
+                return _instance;
+            }
+        }
 
         public Dictionary<byte[], Session> Sessions { get; protected set; }
 
-        public SessionCache() => Sessions = new Dictionary<byte[], Session>();
+        private SessionCache () => Sessions = new Dictionary<byte[], Session>(new ByteArrayComparer());
 
         public void ClearSessions ()
         {
@@ -43,6 +55,9 @@ namespace Server.GameData
 
         public void CreateSession (byte[] sessionId)
         {
+            if (GetSessionById(sessionId) != null)
+                return;
+
             var session = new Session(sessionId);
 
             lock (Sessions)
@@ -52,15 +67,19 @@ namespace Server.GameData
         public void DeleteSession (byte[] sessionId)
         {
             lock (Sessions)
-                Sessions.Remove(sessionId);
+            {
+                if (Sessions.ContainsKey(sessionId))
+                {
+                    Sessions[sessionId].Dispose();
+                    Sessions.Remove(sessionId);
+                }
+            }
         }
 
         public Session GetSessionById (byte[] sessionId)
         {
             lock (Sessions)
-            {
                 return Sessions.FirstOrDefault(s => s.Key == sessionId).Value;
-            }
         }
     }
 }

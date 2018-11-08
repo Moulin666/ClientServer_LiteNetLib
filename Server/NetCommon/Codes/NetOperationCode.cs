@@ -16,5 +16,7 @@ namespace NetCommon.Codes
         DestroyPlayer,
 
         JoinSession,
+
+        LeaveSession
     }
 }

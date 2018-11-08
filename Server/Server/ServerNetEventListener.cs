@@ -180,7 +180,7 @@ namespace Server
                 ConnectedClients[peer.Id].NetworkReceive(operationCode, reader, deliveryMethod);
             }
 
-            //switch (operationCode)
+            //switch (parameterCode)
             //{
             //    case NetOperationCode.MovePlayerCode:
             //    {

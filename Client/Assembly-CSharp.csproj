@@ -60,14 +60,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_scripts\ClientNetEventListener.cs" />
-    <Compile Include="Assets\_scripts\Message\NetMessageHandler.cs" />
-    <Compile Include="Assets\_scripts\NetMessageHandlers\DestroyPlayerHandler.cs" />
-    <Compile Include="Assets\_scripts\NetMessageHandlers\MovePlayerHandler.cs" />
-    <Compile Include="Assets\_scripts\NetMessageHandlers\SpawnPlayerHandler.cs" />
-    <Compile Include="Assets\_scripts\NetMessageHandlers\SpawnPlayersHandler.cs" />
-    <Compile Include="Assets\_scripts\NetMessageHandlers\WorldEnterHandler.cs" />
-    <Compile Include="Assets\_scripts\NetObject.cs" />
+    <Compile Include="Assets\_scripts\BattleManager.cs" />
+    <Compile Include="Assets\_scripts\LiteNetEngine\ClientNetEventListener.cs" />
+    <Compile Include="Assets\_scripts\LiteNetEngine\NetObject.cs" />
+    <Compile Include="Assets\_scripts\Messages\MessageHandler\NetMessageHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\DestroyPlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\JoinSessionHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\MovePlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayersHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\WorldEnterHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageViews\JoinSessionView.cs" />
     <Compile Include="Assets\_scripts\PlayerController.cs" />
     <Compile Include="Assets\_scripts\ScriptableObject\NetMessage.cs" />
     <Reference Include="UnityEditor.StandardEvents">

@@ -1,5 +1,6 @@
 ﻿using NetCommon.Codes;
 using System;
+using System.Collections.Generic;
 
 
 namespace NetCommon
@@ -7,18 +8,21 @@ namespace NetCommon
     [Serializable]
     public class ParameterObject
     {
-        protected readonly NetParameterCode _operationCode;
+        protected readonly Dictionary<NetParameterCode, object> _parameters;
 
-        protected readonly Object _parameter;
+        protected readonly NetErrorCode _errorCode;
 
-        public NetParameterCode OperationCode { get { return _operationCode; } }
+        public Dictionary<NetParameterCode, object> Parameters { get { return _parameters; } }
 
-        public Object Parameter { get { return _parameter; } }
+        public NetErrorCode ErrorCode { get { return _errorCode; } }
 
-        public ParameterObject (NetParameterCode operationCode, Object parameter)
+        public ParameterObject (Dictionary<NetParameterCode, object> parameters)
+            : this(parameters, NetErrorCode.Success) { }
+
+        public ParameterObject (Dictionary<NetParameterCode, object> parameters, NetErrorCode errorCode)
         {
-            _operationCode = operationCode;
-            _parameter = parameter;
+            _parameters = parameters;
+            _errorCode = errorCode;
         }
     }
 }
