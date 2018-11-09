@@ -3,34 +3,32 @@
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessageHandler.cs" caret="0" fromTop="0" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Interfaces/f:INetMessage.cs" caret="211" fromTop="11" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Message/d:Implementation/f:NetMessage.cs" caret="104" fromTop="5" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="577" fromTop="25" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:LiteNetEngine/f:NetObject.cs" caret="0" fromTop="0" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:MovePlayerHandler.cs" caret="743" fromTop="20" />
-    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="1258" fromTop="28" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:SpawnPlayersHandler.cs" caret="1485" fromTop="36" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:SpawnPlayerHandler.cs" caret="1225" fromTop="27" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:LiteNetEngine/f:ClientNetEventListener.cs" caret="3914" fromTop="19" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:PlayerController.cs" caret="359" fromTop="19" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1239" fromTop="31" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/f:BattleManager.cs" caret="221" fromTop="8" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Utils/f:ByteArrayComparer.cs" caret="731" fromTop="28" />
-    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetOperationCode.cs" caret="278" fromTop="19" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="1841" fromTop="27" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/f:ParameterObject.cs" caret="76" fromTop="4" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetParameterCode.cs" caret="141" fromTop="8" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:DestroyPlayerHandler.cs" caret="320" fromTop="12" />
     <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetErrorCode.cs" caret="121" fromTop="6" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:Session.cs" caret="927" fromTop="26" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="1122" fromTop="24" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageViews/f:JoinSessionView.cs" caret="42" fromTop="1" />
     <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:JoinSessionHandler.cs" caret="458" fromTop="17" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="851" fromTop="25" />
+    <File id="12F44184-A422-5F27-22E6-507969043F15/d:Assets/d:_scripts/d:Messages/d:NetMessageHandlers/f:WorldEnterHandler.cs" caret="1211" fromTop="29" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="600" fromTop="29" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:Utils/f:ByteArrayComparer.cs" caret="79" fromTop="5" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="476" fromTop="16" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1478" fromTop="34" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:ServerNetEventListener.cs" caret="8003" fromTop="41" />
+    <File id="8A511F48-57CC-4F39-9929-949D19A1B8EC/d:Codes/f:NetOperationCode.cs" caret="290" fromTop="22" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:Unit.cs" caret="772" fromTop="27" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="521" fromTop="14" />
   </RecentFiles>
   <RecentEdits>
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="624" fromTop="25" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="108" fromTop="17" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="108" fromTop="22" />
-    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="1122" fromTop="19" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="1123" fromTop="19" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="0" fromTop="0" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="108" fromTop="15" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="108" fromTop="10" />
@@ -57,5 +55,8 @@
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="1152" fromTop="32" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="697" fromTop="19" />
     <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:ServerHandlers/f:JoinSessionHandler.cs" caret="779" fromTop="21" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Program.cs" caret="71" fromTop="6" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/f:Client.cs" caret="1478" fromTop="34" />
+    <File id="3FE05A34-00AD-4558-BAC2-F2789344D2EA/d:GameData/f:SessionCache.cs" caret="623" fromTop="15" />
   </RecentEdits>
 </RecentFiles>

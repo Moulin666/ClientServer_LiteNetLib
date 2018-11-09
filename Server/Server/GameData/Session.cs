@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using NetCommon.Codes;
 
 
 namespace Server.GameData
@@ -12,11 +14,27 @@ namespace Server.GameData
 
         public Dictionary<long, Client> Players;
 
-        public Session (byte[] id)
+        public Session (byte[] id, float startSessionTime)
         {
             Id = id;
 
             Players = new Dictionary<long, Client>();
+
+            var timer = new Timer(startSessionTime);
+            timer.Elapsed += (src, args) => StartSession(src, args);
+            timer.AutoReset = false;
+            timer.Start();
+        }
+
+        public void StartSession (object src, ElapsedEventArgs args)
+        {
+            if (Players.Count != 2)
+                SessionCache.Instance.DeleteSession(Id);
+
+            NetDataWriter writer = new NetDataWriter();
+            writer.Put((byte)NetOperationCode.StartSession);
+
+            SendToAll(writer, DeliveryMethod.ReliableOrdered);
         }
         
         public void Dispose()
@@ -52,9 +70,7 @@ namespace Server.GameData
                     Players.Remove(playerId);
             }
         }
-
-        public void SendToPlayer(Client player, NetDataWriter dataWriter, DeliveryMethod deliveryMethod) => player.NetPeer.Send(dataWriter, deliveryMethod);
-
+       
         public void SendToAll (NetDataWriter dataWriter, DeliveryMethod deliveryMethod)
         {
             lock (Players)

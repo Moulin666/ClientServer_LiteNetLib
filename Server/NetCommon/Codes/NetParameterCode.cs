@@ -4,10 +4,6 @@
     {
         ErrorCode = 1,
 
-        NetPlayer,
-
-        CountOfPlayer,
-
         PlayerId,
 
         SessionId,

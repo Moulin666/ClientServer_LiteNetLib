@@ -22,7 +22,7 @@ namespace Server.GameData
 
         public Dictionary<byte[], Session> Sessions { get; protected set; }
 
-        private SessionCache () => Sessions = new Dictionary<byte[], Session>(new ByteArrayComparer());
+        private SessionCache () => Sessions = new Dictionary<byte[], Session>(new ByteArrayComparer ());
 
         public void ClearSessions ()
         {
@@ -53,12 +53,12 @@ namespace Server.GameData
                     Sessions[sessionId].Leave(player.NetPeer.Id);
         }
 
-        public void CreateSession (byte[] sessionId)
+        public void CreateSession (byte[] sessionId, float startSessionTime)
         {
             if (GetSessionById(sessionId) != null)
                 return;
 
-            var session = new Session(sessionId);
+            var session = new Session(sessionId, startSessionTime);
 
             lock (Sessions)
                 Sessions[session.Id] = session;

@@ -71,8 +71,8 @@
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayersHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\WorldEnterHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageViews\JoinSessionView.cs" />
-    <Compile Include="Assets\_scripts\PlayerController.cs" />
     <Compile Include="Assets\_scripts\ScriptableObject\NetMessage.cs" />
+    <Compile Include="Assets\_scripts\UnitController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/WS-07/Desktop/projects/LiteNetLibTests/Client/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

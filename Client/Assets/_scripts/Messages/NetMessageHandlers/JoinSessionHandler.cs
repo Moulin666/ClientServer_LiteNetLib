@@ -12,6 +12,13 @@ public class JoinSessionHandler : NetMessageHandler
     protected override void OnHandleMessage(NetDataReader reader)
     {
         NetErrorCode errorCode = (NetErrorCode)reader.GetByte();
-        Debug.Log("JoinSessionHandler: " + errorCode);
+
+        if (errorCode == NetErrorCode.SessionConnectedFailed)
+        {
+            Debug.Log("Session connected failed");
+            return;
+        }
+
+        BattleManager.Instance.JoinSessionSuccess();
     }
 }

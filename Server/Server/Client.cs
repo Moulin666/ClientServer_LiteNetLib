@@ -37,7 +37,7 @@ namespace Server
             var handlers = _server.NetMessageHandlerList.Where(h => (byte)h.Code == (byte)message.Code);
 
             if (handlers == null || handlers.Count() == 0)
-                Console.WriteLine("Default message handler: {0}", operationCode);
+                Console.WriteLine($"Default message handler: {operationCode}");
 
             foreach (var handler in handlers)
                 handler.HandleMessage(message);
