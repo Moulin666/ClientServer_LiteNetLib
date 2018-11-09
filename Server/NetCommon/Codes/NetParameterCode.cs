@@ -2,10 +2,14 @@
 {
     public enum NetParameterCode
     {
+        ErrorCode = 1,
+
         NetPlayer,
 
         CountOfPlayer,
 
-        PlayerId
+        PlayerId,
+
+        SessionId,
     }
 }

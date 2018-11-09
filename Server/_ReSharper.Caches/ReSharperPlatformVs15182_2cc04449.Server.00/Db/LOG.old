@@ -1,0 +1,32 @@
+2018/11/07-20:39:56.669 1b60 Recovering log #280
+2018/11/07-20:39:56.761 1b60 Level-0 table #290: started
+2018/11/07-20:39:56.881 1b60 Level-0 table #290: 674733 bytes OK
+2018/11/07-20:39:57.043 1b60 Delete type=0 #280
+2018/11/07-20:39:57.043 1b60 Delete type=3 #242
+2018/11/07-20:39:58.398 e08 Compacting 1@0 + 5@1 files
+2018/11/07-20:39:58.542 e08 Generated table #292: 1017 keys, 310339 bytes
+2018/11/07-20:39:59.992 e08 Generated table #293: 2679 keys, 2191128 bytes
+2018/11/07-20:40:01.244 e08 Generated table #294: 3269 keys, 2182428 bytes
+2018/11/07-20:40:02.614 e08 Generated table #295: 2849 keys, 2162630 bytes
+2018/11/07-20:40:02.846 e08 Generated table #296: 96 keys, 137461 bytes
+2018/11/07-20:40:02.949 e08 Generated table #297: 68 keys, 119949 bytes
+2018/11/07-20:40:02.964 e08 Compacted 1@0 + 5@1 files => 7103935 bytes
+2018/11/07-20:40:02.995 e08 Delete type=2 #282
+2018/11/07-20:40:02.995 e08 Delete type=2 #283
+2018/11/07-20:40:02.996 e08 Delete type=2 #284
+2018/11/07-20:40:02.996 e08 Delete type=2 #285
+2018/11/07-20:40:02.996 e08 Delete type=2 #286
+2018/11/07-20:40:02.997 e08 Delete type=2 #290
+2018/11/07-20:40:02.997 e08 compacted to: files[ 0 6 38 0 0 0 0 ]
+2018/11/07-20:40:03.583 e08 Compacting 1@1 + 1@2 files
+2018/11/07-20:40:04.195 e08 Generated table #298: 5855 keys, 2150516 bytes
+2018/11/07-20:40:04.195 e08 Compacted 1@1 + 1@2 files => 2150516 bytes
+2018/11/07-20:40:04.199 e08 Delete type=2 #251
+2018/11/07-20:40:04.200 e08 Delete type=2 #292
+2018/11/07-20:40:04.200 e08 compacted to: files[ 0 5 38 0 0 0 0 ]
+2018/11/07-20:40:21.042 e08 Compacting 1@1 + 1@2 files
+2018/11/07-20:40:22.373 e08 Generated table #299: 1877 keys, 1420523 bytes
+2018/11/07-20:40:22.373 e08 Compacted 1@1 + 1@2 files => 1420523 bytes
+2018/11/07-20:40:22.390 e08 Delete type=2 #288
+2018/11/07-20:40:22.390 e08 Delete type=2 #297
+2018/11/07-20:40:22.390 e08 compacted to: files[ 0 4 38 0 0 0 0 ]

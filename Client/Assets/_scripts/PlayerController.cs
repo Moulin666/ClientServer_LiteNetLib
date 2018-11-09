@@ -1,78 +1,86 @@
-﻿using LiteNetLib;
-using LiteNetLib.Utils;
-using NetCommon;
-using NetCommon.Codes;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 
 public class PlayerController : MonoBehaviour
 {
-    [HideInInspector]
-    public PlayerData playerData;
+    private NetObject _netObject;
 
     private NavMeshAgent _agent;
 
-    private Vector3 serverPosition;
+    public float Health;
 
-	private void Start ()
+    public float Damage;
+
+    public float MoveSpeed;
+
+    public float AttackRadius;
+
+    private GameObject _target;
+    private bool _isAttack = false;
+
+    private void Start ()
     {
+        _netObject = GetComponent<NetObject>();
         _agent = GetComponent<NavMeshAgent>();
 
-        if (playerData.IsMine)
-            StartCoroutine("SendMyPosition");
+        _agent.speed = MoveSpeed;
+
+        if (_netObject.IsMine)
+            GetComponent<Renderer>().material.color = Color.cyan;
     }
 
-    private void Update()
+    private void Update ()
     {
-        if (playerData.IsMine)
+        if (_netObject.IsMine)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit hit;
+            InputUpdate();
 
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-                    _agent.destination = hit.point;
+            if (_isAttack && _target != null)
+            { 
+                if (Vector3.Distance(transform.position, _target.transform.position) > AttackRadius)
+                    _agent.SetDestination(_target.transform.position);
+                else
+                    _agent.SetDestination(transform.position);
             }
         }
-        else
-        {
-            // TODO : Get positin, check new position set, new position.
-        }
     }
 
-    private void FixedUpdate()
+    private void InputUpdate ()
     {
-        if (!playerData.IsMine)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (Vector3.Distance(transform.position, serverPosition) < 3f)
-                transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
-            else
-                transform.position = serverPosition;
+            if (_target == null)
+                return;
+
+            _isAttack = true;
         }
 
-        playerData.X = transform.position.x;
-        playerData.Y = transform.position.y;
-        playerData.Z = transform.position.z;
-    }
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
 
-    public void MoveToPosition(Vector3 newPosition)
-    {
-        serverPosition = newPosition;
-    }
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            {
+                if (hit.collider.tag == "Player")
+                {
+                    if (!hit.collider.gameObject.GetComponent<NetObject>().IsMine)
+                    {
+                        if (_target != null)
+                            _target.GetComponent<Renderer>().material.color = Color.green;
 
-    private IEnumerator SendMyPosition()
-    {
-        yield return new WaitForSeconds(0.1f);
+                        _target = hit.collider.gameObject;
+                        _target.GetComponent<Renderer>().material.color = Color.magenta;
 
-        NetDataWriter dataWriter = new NetDataWriter();
-        dataWriter.Reset();
-        dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
-        dataWriter.Put(MessageSerializerService.SerializeObjectOfType(playerData));
+                        _isAttack = true;
 
-        ClientNetEventListener.Instance.SendOperation(dataWriter, SendOptions.Sequenced);
+                        return;
+                    }
+                }
 
-        StartCoroutine("SendMyPosition");
+                _isAttack = false;
+                _agent.SetDestination(hit.point);
+            }
+        }
     }
 }

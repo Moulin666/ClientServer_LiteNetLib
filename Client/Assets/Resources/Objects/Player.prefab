@@ -21,13 +21,14 @@ GameObject:
   - component: {fileID: 4343041477599060}
   - component: {fileID: 33891735836809628}
   - component: {fileID: 23984364893267496}
-  - component: {fileID: 65949873040766880}
   - component: {fileID: 54941450692714480}
   - component: {fileID: 114719482418577556}
-  - component: {fileID: 195618116779182362}
+  - component: {fileID: 114505689676244716}
+  - component: {fileID: 195870186254091622}
+  - component: {fileID: 65702964614945558}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171846852929396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.51, y: 5.06, z: 25}
+  m_LocalPosition: {x: -26.485628, y: 0.5, z: 9.364723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,18 +103,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65949873040766880
+--- !u!65 &65702964614945558
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171846852929396}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114505689676244716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171846852929396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e1b028a79f1214d869631389e0a570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  IsStatic: 0
+  IsMine: 0
 --- !u!114 &114719482418577556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,7 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c944a907e9efc4da1372871ff69c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &195618116779182362
+  Health: 0
+  Damage: 0
+  MoveSpeed: 0
+  AttackRadius: 0
+--- !u!195 &195870186254091622
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +152,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1171846852929396}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.65
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

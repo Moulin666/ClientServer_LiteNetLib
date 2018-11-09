@@ -6,11 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LiteNetLib" Version="0.7.7.2" />
+    <ProjectReference Include="..\NetCommon\NetCommon.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NetCommon\NetCommon.csproj" />
+    <Reference Include="LiteNetLib">
+      <HintPath>..\packages\LiteNetLib8\lib\netstandard2.0\LiteNetLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
