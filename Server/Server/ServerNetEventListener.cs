@@ -67,45 +67,44 @@ namespace Server
                 1
             };
 
-            PositionData positionData = new PositionData(0, 5, 15);
             Dictionary<int, Unit> units = new Dictionary<int, Unit>()
             {
                 {
-                    0, new Unit(new UnitData(0, positionData, 100, 3, 10, 5, 10))
+                    0, new Unit(new UnitData(0, new PositionData(-3, 0.5f, 13), 100, 3, 10, 5, 10))
                 },
                 {
-                    1, new Unit(new UnitData(1, positionData, 100, 3, 10, 5, 10))
+                    1, new Unit(new UnitData(1, new PositionData(-3, 0.5f, 15), 100, 3, 10, 5, 10))
                 },
                 {
-                    2, new Unit(new UnitData(2, positionData, 100, 3, 10, 5, 10))
+                    2, new Unit(new UnitData(2, new PositionData(-3, 0.5f, 17), 100, 3, 10, 5, 10))
                 },
                 {
-                    3, new Unit(new UnitData(3, positionData, 100, 3, 10, 5, 10))
+                    3, new Unit(new UnitData(3, new PositionData(-3, 0.5f, 19), 100, 3, 10, 5, 10))
                 },
                 {
-                    4, new Unit(new UnitData(4, positionData, 100, 3, 10, 5, 10))
+                    4, new Unit(new UnitData(4, new PositionData(-3, 0.5f, 21), 100, 3, 10, 5, 10))
                 },
                 {
-                    5, new Unit(new UnitData(5, positionData, 100, 3, 10, 5, 10))
+                    5, new Unit(new UnitData(5, new PositionData(-3, 0.5f, 23), 100, 3, 10, 5, 10))
                 },
 
                 {
-                    6, new Unit(new UnitData(6, positionData, 100, 3, 10, 5, 10))
+                    6, new Unit(new UnitData(6, new PositionData(0, 0.5f, 13), 100, 3, 10, 5, 10))
                 },
                 {
-                    7, new Unit(new UnitData(7, positionData, 100, 3, 10, 5, 10))
+                    7, new Unit(new UnitData(7, new PositionData(0, 0.5f, 15), 100, 3, 10, 5, 10))
                 },
                 {
-                    8, new Unit(new UnitData(8, positionData, 100, 3, 10, 5, 10))
+                    8, new Unit(new UnitData(8, new PositionData(0, 0.5f, 17), 100, 3, 10, 5, 10))
                 },
                 {
-                    9, new Unit(new UnitData(9, positionData, 100, 3, 10, 5, 10))
+                    9, new Unit(new UnitData(9, new PositionData(0, 0.5f, 19), 100, 3, 10, 5, 10))
                 },
                 {
-                    10, new Unit(new UnitData(10, positionData, 100, 3, 10, 5, 10))
+                    10, new Unit(new UnitData(10, new PositionData(0, 0.5f, 21), 100, 3, 10, 5, 10))
                 },
                 {
-                    11, new Unit(new UnitData(11, positionData, 100, 3, 10, 5, 10))
+                    11, new Unit(new UnitData(11, new PositionData(0, 0.5f, 23), 100, 3, 10, 5, 10))
                 },
             };
 

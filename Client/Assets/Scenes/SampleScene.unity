@@ -1585,6 +1585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818558436}
   - component: {fileID: 818558442}
+  - component: {fileID: 818558437}
   m_Layer: 0
   m_Name: NetMessageHandlers
   m_TagString: Untagged
@@ -1605,6 +1606,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &818558437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818558435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86910d01fc6c16e499d0afd50df0a32a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: {fileID: 11400000, guid: 9e69d14b004a5324e8f830f62018ce77, type: 2}
 --- !u!114 &818558442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2756,6 +2769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cce78da223c19c45858a6505be6e839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SessionStarted: 0
   JoinSessionButton: {fileID: 1665752217}
   UnitButtons:
   - {fileID: 1323154372}

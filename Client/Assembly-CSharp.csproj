@@ -69,8 +69,10 @@
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\MovePlayerHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayerHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayersHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\StartSessionHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\WorldEnterHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageViews\JoinSessionView.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageViews\SetUnitPositionView.cs" />
     <Compile Include="Assets\_scripts\ScriptableObject\NetMessage.cs" />
     <Compile Include="Assets\_scripts\UnitController.cs" />
     <Reference Include="UnityEditor.StandardEvents">

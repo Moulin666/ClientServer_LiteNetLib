@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class NetObject : MonoBehaviour
 {
-    public long Id;
+    public int Id;
 
     public bool IsStatic;
 
@@ -21,19 +21,19 @@ public class NetObject : MonoBehaviour
     {
         if (IsMine && !IsStatic)
             StartCoroutine("SendMyPosition");
-        else if (!IsMine && !IsStatic)
-            ClientNetEventListener.Instance.OnMove += MoveToPosition;
+        //else if (!IsMine && !IsStatic)
+            //ClientNetEventListener.Instance.OnMove += MoveToPosition;
     }
 
     private void FixedUpdate ()
     {
-        if (!IsMine && !IsStatic)
-        {
-            if (Vector3.Distance(transform.position, serverPosition) < 3f)
-                transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
-            else
-                transform.position = serverPosition;
-        }
+        //if (!IsMine && !IsStatic)
+        //{
+        //    if (Vector3.Distance(transform.position, serverPosition) < 3f)
+        //        transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
+        //    else
+        //        transform.position = serverPosition;
+        //}
     }
 
     public void MoveToPosition (long id, Vector3 newPosition)
