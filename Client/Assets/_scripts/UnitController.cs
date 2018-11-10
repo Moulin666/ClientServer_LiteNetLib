@@ -10,11 +10,15 @@ public class UnitController : MonoBehaviour
 
     public float Health;
 
-    public float Damage;
+    public float MinDamage;
+
+    public float MaxDamage;
 
     public float MoveSpeed;
 
     public float AttackRadius;
+
+    public bool IsSelected = false;
 
     private GameObject _target;
     private bool _isAttack = false;
@@ -25,16 +29,14 @@ public class UnitController : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
 
         _agent.speed = MoveSpeed;
-
-        if (_netObject.IsMine)
-            GetComponent<Renderer>().material.color = Color.cyan;
     }
 
     private void Update ()
     {
         if (_netObject.IsMine)
         {
-            InputUpdate();
+            if (IsSelected)
+                InputUpdate();
 
             if (_isAttack && _target != null)
             { 
@@ -58,6 +60,9 @@ public class UnitController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+                return;
+
             RaycastHit hit;
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
@@ -66,11 +71,7 @@ public class UnitController : MonoBehaviour
                 {
                     if (!hit.collider.gameObject.GetComponent<NetObject>().IsMine)
                     {
-                        if (_target != null)
-                            _target.GetComponent<Renderer>().material.color = Color.green;
-
                         _target = hit.collider.gameObject;
-                        _target.GetComponent<Renderer>().material.color = Color.magenta;
 
                         _isAttack = true;
 

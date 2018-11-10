@@ -54,7 +54,7 @@ public class NetObject : MonoBehaviour
         dataWriter.Put(Id);
         dataWriter.Put(MessageSerializerService.SerializeObjectOfType(positionData));
 
-        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
+        //ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
 
         StartCoroutine("SendMyPosition");
     }

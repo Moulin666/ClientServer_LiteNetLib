@@ -1,7 +1,8 @@
 ﻿using LiteNetLib;
 using LiteNetLib.Utils;
+using NetCommon;
 using NetCommon.Codes;
-using Server.GameData;
+using Server.GameLogic.Session;
 using Server.Message.Interfaces;
 using System;
 
@@ -29,10 +30,13 @@ namespace Server.ServerHandlers
                 writer = new NetDataWriter();
                 writer.Put((byte)NetOperationCode.JoinSession);
                 writer.Put((byte)NetErrorCode.Success);
+
+                writer.Put(message.Client.Units.Count);
+                foreach (var u in message.Client.Units)
+                    writer.Put(MessageSerializerService.SerializeObjectOfType(u.Value.UnitData));
             }
 
             message.Client.NetPeer.Send(writer, DeliveryMethod.ReliableOrdered);
-
             return true;
         }
     }

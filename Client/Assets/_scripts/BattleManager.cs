@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -9,6 +10,12 @@ public class BattleManager : MonoBehaviour
     public Button JoinSessionButton;
 
     public Button[] UnitButtons;
+
+    [SerializeField]
+    public Dictionary<int, UnitController> PlayerUnits = new Dictionary<int, UnitController>();
+
+    [SerializeField]
+    public Dictionary<int, UnitController> EnemyUnits = new Dictionary<int, UnitController>();
 
     private void Awake()
     {
@@ -40,7 +47,13 @@ public class BattleManager : MonoBehaviour
 
     public void OnUnitClick (int unitId)
     {
-        Debug.Log(unitId);
+        if (!PlayerUnits.ContainsKey(unitId))
+            return;
+
+        foreach (var u in PlayerUnits)
+            u.Value.IsSelected = false;
+
+        PlayerUnits[unitId].IsSelected = true;
     }
 
     #endregion
