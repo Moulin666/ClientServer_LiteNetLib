@@ -64,9 +64,16 @@ public class UnitController : MonoBehaviour
                 return;
 
             RaycastHit hit;
-
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
+                if (!BattleManager.Instance.SessionStarted)
+                {
+                    transform.position = new Vector3(hit.point.x, hit.point.y + 0.5f, hit.point.z);
+
+                    SetUnitPositionView setUnitPositionView = new SetUnitPositionView();
+                    setUnitPositionView.SetPosition(_netObject.Id, transform.position);
+                }
+
                 if (hit.collider.tag == "Player")
                 {
                     if (!hit.collider.gameObject.GetComponent<NetObject>().IsMine)

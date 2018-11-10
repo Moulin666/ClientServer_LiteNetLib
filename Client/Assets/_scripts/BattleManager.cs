@@ -7,6 +7,8 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance = null;
 
+    public bool SessionStarted = false;
+
     public Button JoinSessionButton;
 
     public Button[] UnitButtons;
@@ -34,7 +36,7 @@ public class BattleManager : MonoBehaviour
         foreach (var b in UnitButtons)
             b.gameObject.SetActive(true);
 
-        Debug.Log("Success");
+        Debug.Log("Join session succes");
     }
 
     #region UI button click handlers

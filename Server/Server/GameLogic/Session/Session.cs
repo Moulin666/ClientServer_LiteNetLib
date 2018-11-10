@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Timers;
 using LiteNetLib;
 using LiteNetLib.Utils;
+using NetCommon;
 using NetCommon.Codes;
 using Server.GameData;
 
@@ -38,7 +40,20 @@ namespace Server.GameLogic.Session
             NetDataWriter writer = new NetDataWriter();
             writer.Put((byte)NetOperationCode.StartSession);
 
-            SendToAll(writer, DeliveryMethod.ReliableOrdered);
+            writer.Put(Players.ElementAt(1).Value.Units.Count);
+            foreach (var u in Players.ElementAt(1).Value.Units)
+                writer.Put(MessageSerializerService.SerializeObjectOfType(u.Value.UnitData));
+
+            Players.ElementAt(0).Value.NetPeer.Send(writer, DeliveryMethod.ReliableOrdered);
+
+            writer.Reset();
+            writer.Put((byte)NetOperationCode.StartSession);
+
+            writer.Put(Players.ElementAt(0).Value.Units.Count);
+            foreach (var u in Players.ElementAt(0).Value.Units)
+                writer.Put(MessageSerializerService.SerializeObjectOfType(u.Value.UnitData));
+
+            Players.ElementAt(1).Value.NetPeer.Send(writer, DeliveryMethod.ReliableOrdered);
         }
         
         public void Dispose()

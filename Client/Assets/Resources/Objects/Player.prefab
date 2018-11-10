@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4343041477599060}
-  - component: {fileID: 54941450692714480}
   - component: {fileID: 114719482418577556}
   - component: {fileID: 114505689676244716}
-  - component: {fileID: 195870186254091622}
+  - component: {fileID: 54659598939345806}
+  - component: {fileID: 195627003436525784}
   - component: {fileID: 65702964614945558}
   m_Layer: 0
   m_Name: Player
@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171846852929396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.541035, y: 0.717, z: 14.890761}
+  m_LocalPosition: {x: 10.449749, y: 0.504, z: 18.491894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4286921093265384}
@@ -336,7 +336,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502831161388838}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54941450692714480
+--- !u!54 &54659598939345806
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,10 +389,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  Damage: 0
+  MinDamage: 0
+  MaxDamage: 0
   MoveSpeed: 0
   AttackRadius: 0
---- !u!195 &195870186254091622
+  IsSelected: 0
+--- !u!195 &195627003436525784
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,11 +402,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 1171846852929396}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.65
+  m_Radius: 0.6
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 250
+  m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

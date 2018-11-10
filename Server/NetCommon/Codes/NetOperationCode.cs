@@ -9,6 +9,8 @@ namespace NetCommon.Codes
 
         LeaveSession,
 
-        StartSession
+        StartSession,
+
+        SetUnitPosition
     }
 }
