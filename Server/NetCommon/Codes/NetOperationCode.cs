@@ -5,18 +5,10 @@ namespace NetCommon.Codes
 {
     public enum NetOperationCode : Byte
     {
-        SpawnPlayerCode = 1,
+        JoinSession = 1,
 
-        SpawnPlayersCode,
+        LeaveSession,
 
-        WorldEnter,
-
-        MovePlayerCode,
-
-        DestroyPlayer,
-
-        JoinSession,
-
-        LeaveSession
+        StartSession
     }
 }

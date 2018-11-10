@@ -50,11 +50,11 @@ public class NetObject : MonoBehaviour
 
         NetDataWriter dataWriter = new NetDataWriter();
         dataWriter.Reset();
-        dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+        //dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
         dataWriter.Put(Id);
         dataWriter.Put(MessageSerializerService.SerializeObjectOfType(positionData));
 
-        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
+        //ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
 
         StartCoroutine("SendMyPosition");
     }

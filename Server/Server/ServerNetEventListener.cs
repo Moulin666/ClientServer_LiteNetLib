@@ -1,6 +1,8 @@
 ﻿using LiteNetLib;
 using NetCommon.Codes;
+using NetCommon.MessageObjects;
 using Server.GameData;
+using Server.GameLogic.Session;
 using Server.Message.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -48,7 +50,7 @@ namespace Server
 
             GatherMessageHandlers();
 
-            // TODO : Create session by API server and get session id from API server.
+            // TODO : Create session by API server and get session data from API server.
             byte[] sessionId = new byte[12]
             {
                 1,
@@ -64,7 +66,50 @@ namespace Server
                 1,
                 1
             };
-            SessionCache.Instance.CreateSession(sessionId);
+
+            PositionData positionData = new PositionData(0, 5, 15);
+            Dictionary<int, Unit> units = new Dictionary<int, Unit>()
+            {
+                {
+                    0, new Unit(new UnitData(0, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    1, new Unit(new UnitData(1, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    2, new Unit(new UnitData(2, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    3, new Unit(new UnitData(3, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    4, new Unit(new UnitData(4, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    5, new Unit(new UnitData(5, positionData, 100, 3, 10, 5, 10))
+                },
+
+                {
+                    6, new Unit(new UnitData(6, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    7, new Unit(new UnitData(7, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    8, new Unit(new UnitData(8, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    9, new Unit(new UnitData(9, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    10, new Unit(new UnitData(10, positionData, 100, 3, 10, 5, 10))
+                },
+                {
+                    11, new Unit(new UnitData(11, positionData, 100, 3, 10, 5, 10))
+                },
+            };
+
+            SessionCache.Instance.CreateSession(sessionId, units, 30000);
         }
 
         public void PoolEventsUpdate ()
