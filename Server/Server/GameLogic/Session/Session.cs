@@ -42,7 +42,10 @@ namespace Server.GameLogic.Session
                 return;
 
             if (Players.Count != 2)
+            {
                 SessionCache.Instance.DeleteSession(Id);
+                return;
+            }
 
             NetDataWriter writer = new NetDataWriter();
             writer.Put((byte)NetOperationCode.StartSession);

@@ -21,6 +21,9 @@ namespace Server.GameData
 
             UnitData.Health -= damage;
 
+            if (UnitData.Health < 0)
+                UnitData.Health = 0; // TODO : Death.
+
             Console.WriteLine($"SendDamage. UnitId {UnitData.UnitId} get {damage} damage from UnitId {sender.UnitData.UnitId}");
         }
     }

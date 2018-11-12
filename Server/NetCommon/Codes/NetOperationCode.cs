@@ -14,5 +14,7 @@ namespace NetCommon.Codes
         SetUnitPosition,
 
         MoveUnit,
+
+        SendDamage
     }
 }

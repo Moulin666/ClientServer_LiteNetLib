@@ -19,15 +19,16 @@ namespace Server.ServerHandlers
             if (message.Client.CurrentSessionId == null)
                 return true;
 
-            Session session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
+            var session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
+            if (session == null)
+                return true;
 
             int unitId = message.Reader.GetInt();
             PositionData positionData = MessageSerializerService.DeserializeObjectOfType<PositionData>(message.Reader.GetString());
 
-            if (!session.Units.ContainsKey(unitId))
-                return true;
+            if (session.Units.ContainsKey(unitId))
+                session.Units[unitId].UnitData.PositionData = positionData;
 
-            session.Units[unitId].UnitData.PositionData = positionData;
             return true;
         }
     }

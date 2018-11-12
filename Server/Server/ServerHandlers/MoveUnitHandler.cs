@@ -21,7 +21,9 @@ namespace Server.ServerHandlers
             PositionData positionData =
                 MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
 
-            Session session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
+            var session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
+            if (session == null)
+                return true;
 
             if (session.Units.ContainsKey(unitId))
             {
@@ -34,10 +36,8 @@ namespace Server.ServerHandlers
                 _dataWriter.Put(serializePositionData);
 
                 foreach (var p in session.Players)
-                {
                     if (p.Value.NetPeer.Id != message.Client.NetPeer.Id)
                         p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.Sequenced);
-                }
             }
 
             return true;

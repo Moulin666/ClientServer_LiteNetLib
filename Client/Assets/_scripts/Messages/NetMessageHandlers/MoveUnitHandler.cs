@@ -17,7 +17,5 @@ public class MoveUnitHandler : NetMessageHandler
 
         Vector3 newPosition = new Vector3(positionData.X, positionData.Y, positionData.Z);
         ClientNetEventListener.Instance.OnMoveEvent(id, newPosition);
-
-        Debug.Log(id + " / " + newPosition);
     }
 }
