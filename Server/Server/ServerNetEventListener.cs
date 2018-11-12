@@ -67,45 +67,44 @@ namespace Server
                 1
             };
 
-            PositionData positionData = new PositionData(0, 5, 15);
             Dictionary<int, Unit> units = new Dictionary<int, Unit>()
             {
                 {
-                    0, new Unit(new UnitData(0, positionData, 100, 3, 10, 5, 10))
+                    0, new Unit(new UnitData(0, new PositionData(-3, 0.5f, 13), 100, 3, 5, 5, 10))
                 },
                 {
-                    1, new Unit(new UnitData(1, positionData, 100, 3, 10, 5, 10))
+                    1, new Unit(new UnitData(1, new PositionData(-3, 0.5f, 15), 100, 3, 5, 5, 10))
                 },
                 {
-                    2, new Unit(new UnitData(2, positionData, 100, 3, 10, 5, 10))
+                    2, new Unit(new UnitData(2, new PositionData(-3, 0.5f, 17), 100, 3, 5, 5, 10))
                 },
                 {
-                    3, new Unit(new UnitData(3, positionData, 100, 3, 10, 5, 10))
+                    3, new Unit(new UnitData(3, new PositionData(-3, 0.5f, 19), 100, 3, 5, 5, 10))
                 },
                 {
-                    4, new Unit(new UnitData(4, positionData, 100, 3, 10, 5, 10))
+                    4, new Unit(new UnitData(4, new PositionData(-3, 0.5f, 21), 100, 3, 5, 5, 10))
                 },
                 {
-                    5, new Unit(new UnitData(5, positionData, 100, 3, 10, 5, 10))
+                    5, new Unit(new UnitData(5, new PositionData(-3, 0.5f, 23), 100, 3, 5, 5, 10))
                 },
 
                 {
-                    6, new Unit(new UnitData(6, positionData, 100, 3, 10, 5, 10))
+                    6, new Unit(new UnitData(6, new PositionData(0, 0.5f, 13), 100, 3, 5, 5, 10))
                 },
                 {
-                    7, new Unit(new UnitData(7, positionData, 100, 3, 10, 5, 10))
+                    7, new Unit(new UnitData(7, new PositionData(0, 0.5f, 15), 100, 3, 5, 5, 10))
                 },
                 {
-                    8, new Unit(new UnitData(8, positionData, 100, 3, 10, 5, 10))
+                    8, new Unit(new UnitData(8, new PositionData(0, 0.5f, 17), 100, 3, 5, 5, 10))
                 },
                 {
-                    9, new Unit(new UnitData(9, positionData, 100, 3, 10, 5, 10))
+                    9, new Unit(new UnitData(9, new PositionData(0, 0.5f, 19), 100, 3, 5, 5, 10))
                 },
                 {
-                    10, new Unit(new UnitData(10, positionData, 100, 3, 10, 5, 10))
+                    10, new Unit(new UnitData(10, new PositionData(0, 0.5f, 21), 100, 3, 5, 5, 10))
                 },
                 {
-                    11, new Unit(new UnitData(11, positionData, 100, 3, 10, 5, 10))
+                    11, new Unit(new UnitData(11, new PositionData(0, 0.5f, 23), 100, 3, 5, 5, 10))
                 },
             };
 
@@ -164,37 +163,6 @@ namespace Server
         public void OnPeerConnected (NetPeer peer)
         {
             Client newPeer = new Client(peer, this);
-
-            //var serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
-
-            //_dataWriter.Reset();
-            //_dataWriter.Put((byte)NetOperationCode.SpawnPlayerCode);
-            //_dataWriter.Put(serializeNewPeerPlayerData);
-
-            //foreach (var p in ConnectedClients)
-            //    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-
-            //if (ConnectedClients.Count > 0)
-            //{
-            //    _dataWriter.Reset();
-            //    _dataWriter.Put((byte)NetOperationCode.SpawnPlayersCode);
-            //    _dataWriter.Put(ConnectedClients.Count);
-
-            //    foreach (var p in ConnectedClients)
-            //        _dataWriter.Put(MessageSerializerService.SerializeObjectOfType(p.Value.PlayerData));
-
-            //    peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-            //}
-
-            //serializeNewPeerPlayerData = MessageSerializerService.SerializeObjectOfType(newPeer.PlayerData);
-
-            //_dataWriter.Reset();
-            //_dataWriter.Put((byte)NetOperationCode.WorldEnter);
-            //_dataWriter.Put(serializeNewPeerPlayerData);
-
-            //peer.Send(_dataWriter, DeliveryMethod.ReliableOrdered);
-
-            //Console.WriteLine(string.Format("Connected peer. EndPoint: {0} | PeerId: {1}", peer.EndPoint, peer.Id));
         }
 
         public void OnPeerDisconnected (NetPeer peer, DisconnectInfo disconnectInfo)
@@ -216,7 +184,7 @@ namespace Server
             if (reader.RawData == null)
                 return;
 
-            Console.WriteLine($"OnNetworkReceive: {reader.RawData.Length}");
+            //Console.WriteLine($"OnNetworkReceive: {reader.RawData.Length}");
 
             if (ConnectedClients.ContainsKey(peer.Id))
             {
@@ -224,44 +192,6 @@ namespace Server
 
                 ConnectedClients[peer.Id].NetworkReceive(operationCode, reader, deliveryMethod);
             }
-
-            //switch (parameterCode)
-            //{
-            //    case NetOperationCode.MovePlayerCode:
-            //    {
-            //        long id = reader.GetLong();
-
-            //        if (ConnectedClients.ContainsKey(id))
-            //        {
-            //            var serializePositionData = reader.GetString();
-            //            PositionData positionData =
-            //                MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
-
-            //            var player = ConnectedClients[id];
-            //            player.PlayerData.PositionData = positionData;
-
-            //            ConnectedClients[id] = player;
-
-            //            _dataWriter.Reset();
-            //            _dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
-            //            _dataWriter.Put(id);
-            //            _dataWriter.Put(serializePositionData);
-
-            //            foreach (var p in ConnectedClients)
-            //                if (p.Value.NetPeer.Id != peer.Id)
-            //                    p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.Sequenced);
-
-            //            Console.WriteLine(string.Format("Player move. Id: {0} | New pos: {1}, {2}, {3}",
-            //                player.PlayerData.Id, player.PlayerData.PositionData.X, player.PlayerData.PositionData.Y,
-            //                player.PlayerData.PositionData.Z));
-            //        }
-            //    }
-            //        break;
-
-            //    default:
-            //        Console.WriteLine("Default handler");
-            //        break;
-            //}
         }
 
         #endregion

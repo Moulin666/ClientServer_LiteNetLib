@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class NetObject : MonoBehaviour
 {
-    public long Id;
+    public int Id;
 
     public bool IsStatic;
 
@@ -19,9 +19,9 @@ public class NetObject : MonoBehaviour
 
     private void Start ()
     {
-        if (IsMine && !IsStatic)
-            StartCoroutine("SendMyPosition");
-        else if (!IsMine && !IsStatic)
+        serverPosition = transform.position;
+
+        if (!IsMine && !IsStatic)
             ClientNetEventListener.Instance.OnMove += MoveToPosition;
     }
 
@@ -35,6 +35,14 @@ public class NetObject : MonoBehaviour
                 transform.position = serverPosition;
         }
     }
+
+    public void StartSynchronization ()
+    {
+        if (IsMine && !IsStatic)
+            StartCoroutine("SendMyPosition");
+    }
+
+    public void StopSynchronization () => StopCoroutine("SendMyPosition");
 
     public void MoveToPosition (long id, Vector3 newPosition)
     {
@@ -50,11 +58,11 @@ public class NetObject : MonoBehaviour
 
         NetDataWriter dataWriter = new NetDataWriter();
         dataWriter.Reset();
-        //dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+        dataWriter.Put((byte)NetOperationCode.MoveUnit);
         dataWriter.Put(Id);
         dataWriter.Put(MessageSerializerService.SerializeObjectOfType(positionData));
 
-        //ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
+        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
 
         StartCoroutine("SendMyPosition");
     }

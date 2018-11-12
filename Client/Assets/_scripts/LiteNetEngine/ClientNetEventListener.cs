@@ -117,7 +117,7 @@ public class ClientNetEventListener : MonoBehaviour, INetEventListener
         if (reader.RawData == null)
             return;
 
-        Debug.Log($"OnNetworkReceive: {reader.RawData.Length}");
+        //Debug.Log($"OnNetworkReceive: {reader.RawData.Length}");
 
         NetOperationCode operationCode = (NetOperationCode)reader.GetByte();
 
