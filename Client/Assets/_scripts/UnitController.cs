@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using LiteNetLib;
+using LiteNetLib.Utils;
+using NetCommon.Codes;
+using UnityEngine;
 using UnityEngine.AI;
 
 
@@ -21,7 +24,9 @@ public class UnitController : MonoBehaviour
     public bool IsSelected = false;
 
     private GameObject _target;
+
     private bool _isAttack = false;
+    private bool _canAttack = true;
 
     private void Start ()
     {
@@ -39,11 +44,29 @@ public class UnitController : MonoBehaviour
                 InputUpdate();
 
             if (_isAttack && _target != null)
-            { 
+            {
                 if (Vector3.Distance(transform.position, _target.transform.position) > AttackRadius)
                     _agent.SetDestination(_target.transform.position);
                 else
+                {
                     _agent.SetDestination(transform.position);
+
+                    if (_canAttack)
+                    {
+                        _canAttack = false;
+
+                        var targetId = _target.GetComponent<NetObject>().Id;
+
+                        NetDataWriter dataWriter = new NetDataWriter();
+                        dataWriter.Put((byte)NetOperationCode.SendDamage);
+                        dataWriter.Put(_netObject.Id);
+                        dataWriter.Put(targetId);
+
+                        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
+
+                        Invoke("AttackCooldown", 5f);
+                    }
+                }
             }
         }
     }
@@ -90,5 +113,18 @@ public class UnitController : MonoBehaviour
                 _agent.SetDestination(hit.point);
             }
         }
+    }
+
+    private void AttackCooldown () => _canAttack = true;
+
+    public void MakeDamage ()
+    {
+        // TODO : Perfect damage animation and number of damage from the sky.
+    }
+
+    public void GetDamage (float damage)
+    {
+        Debug.Log("GetDamage: " + damage);
+        // TODO : Perfect damage animation and number of damage from the sky.
     }
 }

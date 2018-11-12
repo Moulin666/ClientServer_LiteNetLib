@@ -1,29 +1,28 @@
 ﻿<RecentlyViewedMethods>
   <RecentlyViewedMethods>
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.FixedUpdate" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.Start" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ASetUnitPositionView.SetPosition%28System.Int32%2CUnityEngine.Vector3%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.GetDamage%28System.Single%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.MakeDamage" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.Update" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AJoinSessionHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/P%3AServer.GameLogic.Session.Session.Units" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerHandlers.SetUnitPositionHandler.HandleMessage%28Server.Message.Interfaces.INetMessage%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.GameLogic.Session.Session.StartSession%28System.Object%2CSystem.Timers.ElapsedEventArgs%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ASetUnitPositionView.SetPosition%28System.Int32%2CUnityEngine.Vector3%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ASetUnitPositionView.SetPosition%28System.Int32%2CUnityEngine.Vector3%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.InputUpdate" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.InputUpdate" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.InputUpdate" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerHandlers.JoinSessionHandler.HandleMessage%28Server.Message.Interfaces.INetMessage%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerHandlers.JoinSessionHandler.HandleMessage%28Server.Message.Interfaces.INetMessage%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerHandlers.SetUnitPositionHandler.HandleMessage%28Server.Message.Interfaces.INetMessage%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/M%3AServer.ServerHandlers.JoinSessionHandler.HandleMessage%28Server.Message.Interfaces.INetMessage%29" />
-    <RecentMethod id="3fe05a34-00ad-4558-bac2-f2789344d2ea%28Server%29-B7189516%5B.NETCoreApp%2CVersion%3Dv2.1%5D/P%3AServer.ServerHandlers.SetUnitPositionHandler.Code" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.InputUpdate" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.Update" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AUnitController.Start" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.SendMyPosition" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.StartSynchronization" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.FixedUpdate" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.FixedUpdate" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetObject.MoveToPosition%28System.Int64%2CUnityEngine.Vector3%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AMoveUnitHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessageHandler.HandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3ANetMessage.Notify%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.NetPacketReader%2CLiteNetLib.DeliveryMethod%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.Start" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/F%3AClientNetEventListener.NetMessageList" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-2205A6B4%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.Awake" />
+    <RecentMethod id="8a511f48-57cc-4f39-9929-949d19a1b8ec%28NetCommon%29-7A43CF15%5B.NETStandard%2CVersion%3Dv2.0%5D/M%3ANetCommon.MessageSerializerService.DeserializeBson%60%601%28System.Object%29" />
+    <RecentMethod id="8a511f48-57cc-4f39-9929-949d19a1b8ec%28NetCommon%29-7A43CF15%5B.NETStandard%2CVersion%3Dv2.0%5D/F%3ANetCommon.Codes.NetErrorCode.SessionConnectedFailed" />
   </RecentlyViewedMethods>
 </RecentlyViewedMethods>

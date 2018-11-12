@@ -30,6 +30,6 @@ public class StartSessionHandler : NetMessageHandler
             BattleManager.Instance.EnemyUnits.Add(i, newUnit);
         }
 
-        BattleManager.Instance.SessionStarted = true;
+        BattleManager.Instance.StartSession();
     }
 }

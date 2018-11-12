@@ -45,8 +45,6 @@ public class NetMessage : ScriptableObject
     public void Notify (NetDataReader reader)
     {
         for (int i = handlers.Count - 1; i >= 0; i--)
-        {
             handlers[i].HandleMessage(reader);
-        }
     }
 }

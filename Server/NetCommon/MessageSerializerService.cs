@@ -17,7 +17,7 @@ namespace NetCommon
         /// <typeparam name="T">Class</typeparam>
         /// <param name="objectToSerialize">Object to serialize of type to JSon or BSon</param>
         /// <returns>Serialize object.</returns>
-        public static String SerializeObjectOfType<T>(T objectToSerialize) where T : class
+        public static String SerializeObjectOfType<T> (T objectToSerialize) where T : class
         {
             string result = null;
 
@@ -36,7 +36,7 @@ namespace NetCommon
         /// <typeparam name="T">Class</typeparam>
         /// <param name="objectToDeserialize">Object to deserialize of type from JSon or BSon</param>
         /// <returns>Deserialize T. Where T : class</returns>
-        public static T DeserializeObjectOfType<T>(Object objectToDeserialize) where T : class
+        public static T DeserializeObjectOfType<T> (Object objectToDeserialize) where T : class
         {
             T result = null;
 
@@ -51,21 +51,17 @@ namespace NetCommon
 
         #region JSon
 
-        protected static String SerializeJson<T>(T objectToSerialize) where T : class
-        {
-            return JsonConvert.SerializeObject(objectToSerialize);
-        }
+        protected static String SerializeJson<T> (T objectToSerialize) where T : class
+            => JsonConvert.SerializeObject(objectToSerialize);
 
-        protected static T DeserializeJson<T>(Object objectToDeserialize) where T : class
-        {
-            return JsonConvert.DeserializeObject<T>((string)objectToDeserialize);
-        }
+        protected static T DeserializeJson<T> (Object objectToDeserialize) where T : class
+            => JsonConvert.DeserializeObject<T>((string)objectToDeserialize);
 
         #endregion
 
         #region BSon
 
-        protected static String SerializeBson<T>(T objectToSerialize) where T : class
+        protected static String SerializeBson<T> (T objectToSerialize) where T : class
         {
             MemoryStream memoryStream = new MemoryStream();
 
@@ -78,7 +74,7 @@ namespace NetCommon
             return Convert.ToBase64String(memoryStream.ToArray());
         }
 
-        protected static T DeserializeBson<T>(Object objectToDeserialize) where T : class
+        protected static T DeserializeBson<T> (Object objectToDeserialize) where T : class
         {
             byte[] data = Convert.FromBase64String((string)objectToDeserialize);
 

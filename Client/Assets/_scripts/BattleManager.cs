@@ -39,6 +39,14 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Join session succes");
     }
 
+    public void StartSession ()
+    {
+        SessionStarted = true;
+
+        foreach (var u in PlayerUnits.Values)
+            u.GetComponent<NetObject>().StartSynchronization();
+    }
+
     #region UI button click handlers
 
     public void OnJoinSessionClick ()

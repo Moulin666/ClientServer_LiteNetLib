@@ -11,6 +11,10 @@ namespace NetCommon.Codes
 
         StartSession,
 
-        SetUnitPosition
+        SetUnitPosition,
+
+        MoveUnit,
+
+        SendDamage
     }
 }

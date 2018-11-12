@@ -1586,6 +1586,8 @@ GameObject:
   - component: {fileID: 818558436}
   - component: {fileID: 818558442}
   - component: {fileID: 818558437}
+  - component: {fileID: 818558438}
+  - component: {fileID: 818558439}
   m_Layer: 0
   m_Name: NetMessageHandlers
   m_TagString: Untagged
@@ -1618,6 +1620,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Message: {fileID: 11400000, guid: 9e69d14b004a5324e8f830f62018ce77, type: 2}
+--- !u!114 &818558438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818558435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97be3d0ac75f34445b295309f255c13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: {fileID: 11400000, guid: 8dcb4efdcb3d70946b87e48f4be06069, type: 2}
+--- !u!114 &818558439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818558435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c379ae77c98fbd45b5bf80647bad1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Message: {fileID: 11400000, guid: 3fc528fce76c30c46b1d2ed151b3d4a3, type: 2}
 --- !u!114 &818558442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2785,7 +2811,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1652624007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.069687, y: 3.6493936, z: 20.605288}
+  m_LocalPosition: {x: 9.069687, y: 4.371, z: 19.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
