@@ -23,7 +23,7 @@ namespace Server.ServerHandlers
             NetDataWriter writer = new NetDataWriter();
             writer.Put((byte)NetOperationCode.JoinSession);
 
-            if (!SessionCache.Instance.JoinSession(sessionId, message.Client))
+            if (message.Client.CurrentSessionId != null || !SessionCache.Instance.JoinSession(sessionId, message.Client))
                 writer.Put((byte)NetErrorCode.SessionConnectedFailed);
             else
             {

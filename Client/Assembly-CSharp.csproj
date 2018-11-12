@@ -66,7 +66,7 @@
     <Compile Include="Assets\_scripts\Messages\MessageHandler\NetMessageHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\DestroyPlayerHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\JoinSessionHandler.cs" />
-    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\MovePlayerHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\MoveUnitHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayerHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SpawnPlayersHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\StartSessionHandler.cs" />

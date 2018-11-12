@@ -15,6 +15,8 @@ namespace Server.GameLogic.Session
     {
         public byte[] Id { get; private set; }
 
+        public bool IsStarted { get; private set; }
+
         public Dictionary<int, Unit> Units { get; set; }
 
         public Dictionary<long, Client> Players;
@@ -23,6 +25,8 @@ namespace Server.GameLogic.Session
         {
             Id = id;
             Units = units;
+
+            IsStarted = false;
 
             Players = new Dictionary<long, Client>();
 
@@ -34,6 +38,9 @@ namespace Server.GameLogic.Session
 
         public void StartSession (object src, ElapsedEventArgs args)
         {
+            if (IsStarted)
+                return;
+
             if (Players.Count != 2)
                 SessionCache.Instance.DeleteSession(Id);
 
@@ -54,6 +61,8 @@ namespace Server.GameLogic.Session
                 writer.Put(MessageSerializerService.SerializeObjectOfType(u.Value.UnitData));
 
             Players.ElementAt(1).Value.NetPeer.Send(writer, DeliveryMethod.ReliableOrdered);
+
+            IsStarted = true;
         }
         
         public void Dispose()
@@ -71,9 +80,12 @@ namespace Server.GameLogic.Session
 
         public bool Join(Client player)
         {
+            if (IsStarted)
+                return false;
+
             lock (Players)
             {
-                if (player.CurrentSessionId != null || Players.ContainsKey(player.NetPeer.Id) || Players.Count >= 2)
+                if (Players.ContainsKey(player.NetPeer.Id) || Players.Count >= 2)
                     return false;
 
                 player.CurrentSessionId = Id;
@@ -101,6 +113,8 @@ namespace Server.GameLogic.Session
                     player.Units.Clear();
 
                     Players.Remove(playerId);
+
+                    IsStarted = false;
                 }
             }
         }

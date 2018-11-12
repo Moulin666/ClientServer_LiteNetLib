@@ -19,22 +19,30 @@ public class NetObject : MonoBehaviour
 
     private void Start ()
     {
-        if (IsMine && !IsStatic)
-            StartCoroutine("SendMyPosition");
-        //else if (!IsMine && !IsStatic)
-            //ClientNetEventListener.Instance.OnMove += MoveToPosition;
+        serverPosition = transform.position;
+
+        if (!IsMine && !IsStatic)
+            ClientNetEventListener.Instance.OnMove += MoveToPosition;
     }
 
     private void FixedUpdate ()
     {
-        //if (!IsMine && !IsStatic)
-        //{
-        //    if (Vector3.Distance(transform.position, serverPosition) < 3f)
-        //        transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
-        //    else
-        //        transform.position = serverPosition;
-        //}
+        if (!IsMine && !IsStatic)
+        {
+            if (Vector3.Distance(transform.position, serverPosition) < 3f)
+                transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
+            else
+                transform.position = serverPosition;
+        }
     }
+
+    public void StartSynchronization ()
+    {
+        if (IsMine && !IsStatic)
+            StartCoroutine("SendMyPosition");
+    }
+
+    public void StopSynchronization () => StopCoroutine("SendMyPosition");
 
     public void MoveToPosition (long id, Vector3 newPosition)
     {
@@ -50,11 +58,11 @@ public class NetObject : MonoBehaviour
 
         NetDataWriter dataWriter = new NetDataWriter();
         dataWriter.Reset();
-        //dataWriter.Put((byte)NetOperationCode.MovePlayerCode);
+        dataWriter.Put((byte)NetOperationCode.MoveUnit);
         dataWriter.Put(Id);
         dataWriter.Put(MessageSerializerService.SerializeObjectOfType(positionData));
 
-        //ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
+        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
 
         StartCoroutine("SendMyPosition");
     }
