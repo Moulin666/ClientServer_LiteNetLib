@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b5500087c8f784b9091d9edcf4768d, type: 3}
   m_Name: SendDamageHandler
   m_EditorClassIdentifier: 
-  Code: 6
+  Code: 7

@@ -20,7 +20,7 @@ namespace Server.ServerHandlers
                 return true;
 
             var session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
-            if (session == null)
+            if (session == null || session.IsStarted)
                 return true;
 
             int unitId = message.Reader.GetInt();

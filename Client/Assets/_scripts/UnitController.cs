@@ -42,15 +42,18 @@ public class UnitController : MonoBehaviour
         {
             if (IsSelected)
                 InputUpdate();
+        }
 
-            if (_isAttack && _target != null)
+        if (_isAttack && _target != null)
+        {
+            if (Vector3.Distance(transform.position, _target.transform.position) > AttackRadius)
+                _agent.SetDestination(_target.transform.position);
+            else
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) > AttackRadius)
-                    _agent.SetDestination(_target.transform.position);
-                else
-                {
-                    _agent.SetDestination(transform.position);
+                _agent.SetDestination(transform.position);
 
+                if (_netObject.IsMine)
+                {
                     if (_canAttack)
                     {
                         _canAttack = false;
@@ -79,6 +82,9 @@ public class UnitController : MonoBehaviour
                 return;
 
             _isAttack = true;
+
+            SendAttackUnitViews sendAttackUnitViews = new SendAttackUnitViews();
+            sendAttackUnitViews.SendAttackUnit(_netObject.Id, _target.GetComponent<NetObject>().Id);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -101,16 +107,14 @@ public class UnitController : MonoBehaviour
                 {
                     if (!hit.collider.gameObject.GetComponent<NetObject>().IsMine)
                     {
-                        _target = hit.collider.gameObject;
-
-                        _isAttack = true;
-
+                        SendAttackUnitViews sendAttackUnitViews = new SendAttackUnitViews();
+                        sendAttackUnitViews.SendAttackUnit(_netObject.Id, hit.collider.gameObject.GetComponent<NetObject>().Id);
                         return;
                     }
                 }
 
                 _isAttack = false;
-                _agent.SetDestination(hit.point);
+                _netObject.SendNewDestination(hit.point);
             }
         }
     }
@@ -126,5 +130,17 @@ public class UnitController : MonoBehaviour
     {
         Debug.Log("GetDamage: " + damage);
         // TODO : Perfect damage animation and number of damage from the sky.
+    }
+
+    public void MoveToNewPosition (Vector3 newPosition)
+    {
+        _isAttack = false;
+        _agent.SetDestination(newPosition);
+    }
+
+    public void AttackUnit (GameObject newTarget)
+    {
+        _isAttack = true;
+        _target = newTarget;
     }
 }

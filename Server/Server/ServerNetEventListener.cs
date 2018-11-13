@@ -108,7 +108,7 @@ namespace Server
                 },
             };
 
-            SessionCache.Instance.CreateSession(sessionId, units, 30000);
+            SessionCache.Instance.CreateSession(sessionId, units, 15000);
         }
 
         public void PoolEventsUpdate ()

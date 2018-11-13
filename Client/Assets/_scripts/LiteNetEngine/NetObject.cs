@@ -15,25 +15,10 @@ public class NetObject : MonoBehaviour
 
     public bool IsMine;
 
-    private Vector3 serverPosition;
-
     private void Start ()
     {
-        serverPosition = transform.position;
-
-        if (!IsMine && !IsStatic)
+        if (!IsStatic)
             ClientNetEventListener.Instance.OnMove += MoveToPosition;
-    }
-
-    private void FixedUpdate ()
-    {
-        if (!IsMine && !IsStatic)
-        {
-            if (Vector3.Distance(transform.position, serverPosition) < 3f)
-                transform.position = Vector3.Lerp(transform.position, serverPosition, 9f * Time.deltaTime);
-            else
-                transform.position = serverPosition;
-        }
     }
 
     public void StartSynchronization ()
@@ -47,7 +32,20 @@ public class NetObject : MonoBehaviour
     public void MoveToPosition (long id, Vector3 newPosition)
     {
         if (Id == id)
-            serverPosition = newPosition;
+            GetComponent<UnitController>().MoveToNewPosition(newPosition);
+    }
+
+    public void SendNewDestination (Vector3 newDestination)
+    {
+        PositionData positionData = new PositionData(newDestination.x, newDestination.y, newDestination.z);
+
+        NetDataWriter dataWriter = new NetDataWriter();
+        dataWriter.Reset();
+        dataWriter.Put((byte)NetOperationCode.SendUnit);
+        dataWriter.Put(Id);
+        dataWriter.Put(MessageSerializerService.SerializeObjectOfType(positionData));
+
+        ClientNetEventListener.Instance.SendOperation(dataWriter, DeliveryMethod.Sequenced);
     }
 
     private IEnumerator SendMyPosition ()
