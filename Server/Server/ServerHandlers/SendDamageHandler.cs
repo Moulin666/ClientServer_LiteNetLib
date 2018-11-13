@@ -1,7 +1,6 @@
 ﻿using System;
 using LiteNetLib;
 using LiteNetLib.Utils;
-using NetCommon;
 using NetCommon.Codes;
 using Server.GameLogic.Session;
 using Server.Message.Interfaces;
@@ -15,8 +14,6 @@ namespace Server.ServerHandlers
 
         public bool HandleMessage (INetMessage message)
         {
-            Console.WriteLine($"SendDamageHandler. PeerId: {message.Client.NetPeer.Id}");
-
             if (message.Client.CurrentSessionId == null)
                 return true;
 
@@ -24,28 +21,31 @@ namespace Server.ServerHandlers
             if (session == null)
                 return true;
 
-            var targetId = message.Reader.GetInt();
             var senderId = message.Reader.GetInt();
+            var targetId = message.Reader.GetInt();
 
-            if (!session.Units.ContainsKey(targetId) || !session.Units.ContainsKey(senderId))
+            if (!session.Units.ContainsKey(senderId) || !session.Units.ContainsKey(targetId))
                 return true;
 
-            var target = session.Units[targetId];
-            var sender = session.Units[senderId];
+            lock (session.Units)
+            {
+                var sender = session.Units[senderId];
+                var target = session.Units[targetId];
 
-            target.SendDamage(sender);
+                target.GetDamage(sender);
 
-            NetDataWriter _dataWriter = new NetDataWriter();
-            _dataWriter.Reset();
-            _dataWriter.Put((byte)NetOperationCode.SendDamage);
-            _dataWriter.Put(target.UnitData.UnitId);
-            _dataWriter.Put(sender.UnitData.UnitId);
-            _dataWriter.Put(target.UnitData.Health);
+                NetDataWriter _dataWriter = new NetDataWriter();
+                _dataWriter.Reset();
+                _dataWriter.Put((byte)NetOperationCode.SendDamage);
+                _dataWriter.Put(senderId);
+                _dataWriter.Put(targetId);
+                _dataWriter.Put(target.UnitData.Health);
 
-            Console.WriteLine($"{target.UnitData.UnitId} / {sender.UnitData.UnitId} / {target.UnitData.Health}");
+                Console.WriteLine($"{senderId} / {targetId} / {target.UnitData.Health}");
 
-            session.SendToAll(_dataWriter, DeliveryMethod.Sequenced);
-            return true;
+                session.SendToAll(_dataWriter, DeliveryMethod.Sequenced);
+                return true;
+            }
         }
     }
 }

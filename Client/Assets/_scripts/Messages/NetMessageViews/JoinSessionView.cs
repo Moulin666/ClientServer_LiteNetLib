@@ -25,6 +25,7 @@ public class JoinSessionView
         };
 
         NetDataWriter writer = new NetDataWriter();
+        writer.Reset();
         writer.Put((byte)NetOperationCode.JoinSession);
 
         foreach (var s in sessionId)

@@ -67,9 +67,12 @@
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\DestroyPlayerHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\JoinSessionHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\MoveUnitHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SendAttackUnitHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SendDamageHandler.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\SendUnitHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageHandlers\StartSessionHandler.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageViews\JoinSessionView.cs" />
+    <Compile Include="Assets\_scripts\Messages\NetMessageViews\SendAttackUnitViews.cs" />
     <Compile Include="Assets\_scripts\Messages\NetMessageViews\SetUnitPositionView.cs" />
     <Compile Include="Assets\_scripts\ScriptableObject\NetMessage.cs" />
     <Compile Include="Assets\_scripts\UnitController.cs" />

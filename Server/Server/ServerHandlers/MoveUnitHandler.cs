@@ -1,6 +1,4 @@
-﻿using LiteNetLib;
-using LiteNetLib.Utils;
-using NetCommon;
+﻿using NetCommon;
 using NetCommon.Codes;
 using NetCommon.MessageObjects;
 using Server.GameLogic.Session;
@@ -22,23 +20,11 @@ namespace Server.ServerHandlers
                 MessageSerializerService.DeserializeObjectOfType<PositionData>(serializePositionData);
 
             var session = SessionCache.Instance.GetSessionById(message.Client.CurrentSessionId);
-            if (session == null)
+            if (session == null || !session.IsStarted)
                 return true;
 
             if (session.Units.ContainsKey(unitId))
-            {
                 session.Units[unitId].UnitData.PositionData = positionData;
-
-                NetDataWriter _dataWriter = new NetDataWriter();
-                _dataWriter.Reset();
-                _dataWriter.Put((byte)NetOperationCode.MoveUnit);
-                _dataWriter.Put(unitId);
-                _dataWriter.Put(serializePositionData);
-
-                foreach (var p in session.Players)
-                    if (p.Value.NetPeer.Id != message.Client.NetPeer.Id)
-                        p.Value.NetPeer.Send(_dataWriter, DeliveryMethod.Sequenced);
-            }
 
             return true;
         }

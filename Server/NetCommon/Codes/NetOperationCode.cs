@@ -15,6 +15,10 @@ namespace NetCommon.Codes
 
         MoveUnit,
 
-        SendDamage
+        SendUnit,
+
+        SendDamage,
+
+        SendAttackUnit
     }
 }
