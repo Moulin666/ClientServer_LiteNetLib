@@ -1,9 +1,6 @@
 ﻿<RecentlyViewedMethods>
   <RecentlyViewedMethods>
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
     <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.GatherMessageHandlers" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnNetworkReceive%28LiteNetLib.NetPeer%2CLiteNetLib.Utils.NetDataReader%29" />
-    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AWorldEnterHandler.OnHandleMessage%28LiteNetLib.Utils.NetDataReader%29" />
+    <RecentMethod id="12f44184-a422-5f27-22e6-507969043f15%28Assembly-CSharp%29-13%5B.NETFramework%2CVersion%3Dv4.7.1%5D/M%3AClientNetEventListener.OnPeerConnected%28LiteNetLib.NetPeer%29" />
   </RecentlyViewedMethods>
 </RecentlyViewedMethods>

@@ -10,10 +10,9 @@ namespace Server.GameData
 
         public Unit(UnitData unitData) => UnitData = unitData;
 
-        public void SendDamage (Unit sender)
+        public void GetDamage (Unit sender)
         {
             // TODO : Check valid operation.
-
             Random random = new Random();
             double range = sender.UnitData.MaxDamage - sender.UnitData.MinDamage;
             double nextDouble = random.NextDouble();
